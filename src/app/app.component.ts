@@ -1,10 +1,18 @@
 import { Component } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
+import { HeaderComponent } from "./components/header/header.component";
+import { HomeComponent } from "./components/pages/home/home.component";
+import { LoginComponent } from "./components/pages/login/login.component";
+import { UserRegistrationComponent } from "./components/pages/user-registration/user-registration.component";
+import { UpdateUserInformationComponent } from "./components/pages/update-user-information/update-user-information.component";
+import { CompanyRegistrationComponent } from "./components/pages/company-registration/company-registration.component";
+import { YourProfileComponent } from "./components/pages/your-profile/your-profile.component";
+import { UpdateCompanyInformationComponent } from "./components/pages/update-company-information/update-company-information.component";
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [RouterOutlet],
+  imports: [RouterOutlet, HeaderComponent, HomeComponent, LoginComponent, UserRegistrationComponent, UpdateUserInformationComponent, CompanyRegistrationComponent, YourProfileComponent, UpdateCompanyInformationComponent],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css'
 })

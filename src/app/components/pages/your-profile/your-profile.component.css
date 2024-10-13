@@ -1,0 +1,30 @@
+.custom-btn {
+    border: 2px solid #007bff; /* Cor da borda */
+    background-color: transparent; /* Fundo transparente */
+    color: black; /* Cor do texto */
+    font-weight: bold; /* Negrito */
+    font-size: large;  /* Tamanho da fonte*/
+    padding: 0.5rem 1rem; /* Espaçamento interno */
+    transition: background-color 0.3s, color 0.3s; /* Efeito de transição */
+    width: 300px; /* Defina a largura desejada */
+    height: 50px; /* Defina a altura desejada */
+    display: flex; /* Use flexbox para alinhar o conteúdo */
+    align-items: center; /* Centralize verticalmente */
+    justify-content: center; /* Centralize horizontalmente */
+}
+
+.custom-btn:hover {
+    background-color: #007bff; /* Cor de fundo ao passar o mouse */
+    color: white; /* Cor do texto ao passar o mouse */
+}
+
+.link-delete {
+    color: black; /* Cor do link */
+    text-decoration: underline; /* Sublinhado */
+    cursor: pointer; /* Muda o cursor para indicar que é clicável */
+    padding-top: 30px;
+}
+
+.link-delete:hover {
+    color: red; /* Cor ao passar o mouse (opcional) */
+}

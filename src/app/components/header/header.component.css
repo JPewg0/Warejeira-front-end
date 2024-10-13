@@ -1,0 +1,62 @@
+.navbar{
+    background-color: #003366;
+}
+
+#nav-container{
+    padding-top: 0;
+    padding-bottom: 0;
+}
+
+#logo{
+    width: 100px;
+    margin-left: 20px;
+}
+
+.navbar-brand{
+    padding: 0;
+    color: #fff;
+}
+
+.navbar-brand:hover{
+    color: #fff;
+}
+
+#navbar-links a {
+    color: #FFF;
+}
+
+.nav-link{
+    padding: 1rem .8rem;
+    font-weight: bold;
+    font-size: large;
+}
+
+.d-flex {
+    align-items: center; /* Centraliza verticalmente */
+}
+
+.form-control {
+    border: 0; /* Borda azul */
+    border-radius: 5px; /* Bordas arredondadas */
+    padding: 10px; /* Espaçamento interno */
+    width: 700px; /* Largura da barra de pesquisa */
+    transition: border-color 0.3s; /* Transição suave na mudança da borda */
+}
+
+.form-control:focus {
+    border-color: #0056b3; /* Cor da borda ao focar */
+    outline: none; /* Remove a borda padrão */
+    box-shadow: 0 0 5px rgba(0, 123, 255, 0.5); /* Sombra ao focar */
+}
+
+.me-2 {
+    margin-left: 260px; /* Espaçamento à direita */
+}
+
+.dropdown-toggle {
+    color: #ffffff; /* Cor do texto do dropdown */
+}
+
+.dropdown-toggle:hover {
+    color: #ffffff; /* Cor do texto ao passar o mouse */
+}

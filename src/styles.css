@@ -1,1 +1,28 @@
-/* You can add global styles to this file, and also import other style files */
+.custom-btn{
+    background-color: #003366;
+    color: white;
+}
+
+body{
+    font-family: 'Poppins', sans-serif;
+}
+
+.row{
+    margin: 0;
+}
+
+.container {
+    padding: 70px 0;
+}
+
+p, li{
+    font-size: 14px;
+}
+h1{
+    color: #003366;
+    padding-bottom: 20px;
+}
+
+div{
+    padding-bottom: 5px;
+}

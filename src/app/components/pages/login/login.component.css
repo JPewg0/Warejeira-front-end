@@ -1,0 +1,12 @@
+.form-container{
+    max-width: 500px;
+    padding: 1rem;
+}
+
+main{
+    height: 100%;
+}
+
+h1{
+    color: #003366;
+}
