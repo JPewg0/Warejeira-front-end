@@ -9,4 +9,29 @@ main{
 
 h1{
     color: #003366;
+    text-align: center;
 }
+
+a {
+    text-decoration: underline;
+}
+
+p {
+    text-align: center;
+    color: #7799;
+    padding-top: 20px;
+}
+
+h4 {
+    text-align: center;
+}
+
+.register-link {
+    color: #7799;
+    font-weight: bold;
+    font-size: 18px;
+  }
+  
+  .register-link:hover {
+    text-align: center;
+  }
