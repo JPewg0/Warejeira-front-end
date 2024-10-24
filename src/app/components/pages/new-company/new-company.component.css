@@ -1,0 +1,24 @@
+main {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: calc(100vh - -100px); /* altura do texto */
+    text-align: center;
+  }
+
+  .content p {
+    font-size: 30px;
+    color: #777;
+    margin-bottom: 100px;
+  }
+  
+  .register-link {
+    color: #7799;
+    font-weight: bold;
+    text-decoration: underline;
+    font-size: 25px;
+  }
+  
+  .register-link:hover {
+    text-decoration: underline;
+  }
