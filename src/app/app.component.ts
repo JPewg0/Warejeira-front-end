@@ -14,11 +14,12 @@ import { Screen1Component } from './components/pages/screen1/screen1.component';
 import { Screen2Component } from './components/pages/screen2/screen2.component';
 import { Payment2Component } from './components/pages/payment2/payment2.component';
 import { ProfileDataComponent } from './components/pages/profile-data/profile-data.component';
+import { YourCompanyComponent } from './components/pages/your-company/your-company.component';
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [RouterOutlet, HeaderComponent, HomeComponent, LoginComponent, UserRegistrationComponent, UpdateUserInformationComponent, CompanyRegistrationComponent, YourProfileComponent, UpdateCompanyInformationComponent, NewCompanyComponent, Payment1Component, Screen1Component, Screen2Component, Payment2Component, YourProfileComponent, ProfileDataComponent],
+  imports: [RouterOutlet, HeaderComponent, HomeComponent, LoginComponent, UserRegistrationComponent, UpdateUserInformationComponent, CompanyRegistrationComponent, YourProfileComponent, UpdateCompanyInformationComponent, NewCompanyComponent, Payment1Component, Screen1Component, Screen2Component, Payment2Component, ProfileDataComponent, YourCompanyComponent],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css'
 })
