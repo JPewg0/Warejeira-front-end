@@ -43,3 +43,9 @@ div{
   .use-address-button:hover {
     background-color: #1646a0;
   }
+
+  .voltar {
+    text-align: center;
+    position: relative;
+    top: 100px;
+}
