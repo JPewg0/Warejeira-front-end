@@ -1,0 +1,24 @@
+.container {
+    width: 80%;
+    border-radius: 4px;
+    padding: 20px;
+    margin-top: 10%;
+    display: flex; /* Ativa o layout flex */
+    gap: 20px; /* Define o espaço entre as colunas */
+}
+
+p {
+    font-size: 1.2pc;
+    padding: 7px;
+    color: gray;
+}
+
+.coluna {
+    flex: 1; /* Faz com que cada coluna ocupe o mesmo espaço */
+    padding: 10px; /* Adiciona espaço interno em cada coluna */
+}
+
+span {
+    text-decoration: underline;
+    font-weight: bold;
+}
