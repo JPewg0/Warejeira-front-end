@@ -27,20 +27,3 @@ h1 {
   margin-top: 10px;
   display: inline-block;
 }
-
-.use-address-button {
-  padding: 10px;
-  background-color: #1e4bcc;
-  color: white;
-  border: none;
-  border-radius: 5px;
-  font-size: 1em;
-  cursor: pointer;
-  position: relative;
-  top: 200px;
-  max-width: 260px
-}
-
-.use-address-button:hover {
-  background-color: #1646a0;
-}
