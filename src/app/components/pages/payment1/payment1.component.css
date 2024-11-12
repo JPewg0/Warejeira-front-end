@@ -1,0 +1,46 @@
+body {
+  font-family: Arial, sans-serif;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  margin: 0;
+  background-color: #f9f9f9;
+}
+
+
+h1 {
+  margin-bottom: 20px;
+}
+
+.address-field input{
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #000000;
+  border-radius: 5px;
+}
+
+.new-address {
+  color: #888;
+  font-size: 1.2pc;
+  cursor: pointer;
+  margin-top: 10px;
+  display: inline-block;
+}
+
+.use-address-button {
+  padding: 10px;
+  background-color: #1e4bcc;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  font-size: 1em;
+  cursor: pointer;
+  position: relative;
+  top: 200px;
+  max-width: 260px
+}
+
+.use-address-button:hover {
+  background-color: #1646a0;
+}
