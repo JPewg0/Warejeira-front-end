@@ -13,17 +13,17 @@ h1 {
   margin-bottom: 20px;
 }
 
-.address-field input{
-  width: 100%;
-  padding: 10px;
-  border: 1px solid #000000;
-  border-radius: 5px;
+.address-field input {
+  width: 100%; /* Define a largura do campo de entrada para ocupar todo o espaço do contêiner pai */
+  padding: 10px; /* Adiciona um preenchimento interno de 10 pixels ao redor do texto do campo */
+  border: 1px solid #000000; /* Adiciona uma borda preta de 1 pixel ao campo de entrada */
+  border-radius: 5px; /* Arredonda os cantos do campo de entrada com um raio de 5 pixels */
 }
 
 .new-address {
   color: #888;
-  font-size: 1.2pc;
-  cursor: pointer;
-  margin-top: 10px;
-  display: inline-block;
+  font-size: 1.2pc; /* Define o tamanho da fonte como 1.2 picas, o que equivale aproximadamente a 16 pixels */
+  cursor: pointer; /* Altera o cursor para o ícone de mão, indicando que o elemento é clicável */
+  margin-top: 10px; /* Adiciona um espaço de 10 pixels acima do elemento */
+  display: inline-block; /* Define o elemento como inline-block, permitindo definir largura e altura enquanto mantém o elemento na linha */
 }
