@@ -59,10 +59,10 @@ span {
 }
 
 .barra-pesquisa-filtro {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding: 10px;
+    display: flex; /* Aplica o modelo flexbox na barra de pesquisa e filtro */
+    align-items: center; /* Alinha os itens ao centro verticalmente */
+    justify-content: space-between; /* Distribui espaço entre os itens para mantê-los nas extremidades */
+    padding: 10px; /* Adiciona um preenchimento interno de 10 pixels ao redor da barra */
     background-color: #f1f1f1;
 }
 
