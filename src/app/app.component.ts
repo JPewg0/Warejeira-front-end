@@ -8,11 +8,13 @@ import { UpdateUserInformationComponent } from "./components/pages/update-user-i
 import { CompanyRegistrationComponent } from "./components/pages/company-registration/company-registration.component";
 import { YourProfileComponent } from "./components/pages/your-profile/your-profile.component";
 import { UpdateCompanyInformationComponent } from "./components/pages/update-company-information/update-company-information.component";
+import { ShoppingCartComponent } from "./components/pages/shopping-cart/shopping-cart.component";
+import { MessagesComponent } from "./components/messages/messages.component";
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [RouterOutlet, HeaderComponent, HomeComponent, LoginComponent, UserRegistrationComponent, UpdateUserInformationComponent, CompanyRegistrationComponent, YourProfileComponent, UpdateCompanyInformationComponent],
+  imports: [RouterOutlet, HeaderComponent, MessagesComponent],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css'
 })

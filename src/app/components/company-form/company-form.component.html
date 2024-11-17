@@ -1,0 +1,123 @@
+<form class="w-100" (ngSubmit)="submit()" [formGroup]="userForm" #formDir="ngForm">
+    <h1 class="mb-3 fw-bold">Cadastro de uma Empresa</h1>
+
+    <!-- Nome e CPF -->
+    <div class="d-flex justify-content-between mb-3">
+        <div class="form-floating w-50 pe-2">
+            <input type="text" class="form-control" id="floatingNome" placeholder="seunome" formControlName="name">
+            <label for="floatingNome">Nome</label>
+            <!-- Mensagem de erro abaixo do campo Nome -->
+            <div class="validation-error" *ngIf="userForm.controls['name'].invalid && formDir.submitted">
+                <p>Este campo é obrigatório!</p>
+            </div>
+        </div>
+        <div class="form-floating w-50 ps-2">
+            <input type="text" class="form-control" id="floatingCpf" placeholder="cnpj" formControlName="cnpj">
+            <label for="floatingCpf">CNPJ</label>
+            <!-- Mensagem de erro abaixo do campo CPF -->
+            <div class="validation-error" *ngIf="userForm.controls['cnpj'].invalid && formDir.submitted">
+                <p>Este campo é obrigatório!</p>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- E-mail e Telefone -->
+    <div class="d-flex justify-content-between mb-3">
+        <div class="form-floating w-50 pe-2">
+            <input type="email" class="form-control" id="floatingEmail" placeholder="seu-email@gmail.com" formControlName="email">
+            <label for="floatingEmail">E-mail</label>
+            <!-- Mensagem de erro abaixo do campo Nome -->
+            <div class="validation-error" *ngIf="userForm.controls['email'].invalid && formDir.submitted">
+                <p>Este campo é obrigatório!</p>
+            </div>
+        </div>
+        <div class="form-floating w-50 ps-2">
+            <input type="text" class="form-control" id="floatingTelefone" placeholder="(11)11111-1111" formControlName="phone">
+            <label for="floatingTelefone">Telefone</label>
+            <!-- Mensagem de erro abaixo do campo Nome -->
+            <div class="validation-error" *ngIf="userForm.controls['phone'].invalid && formDir.submitted">
+                <p>Este campo é obrigatório!</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Rua, Número e CEP -->
+    <div class="d-flex justify-content-between mb-3">
+        <div class="form-floating w-50 pe-2">
+            <input type="text" class="form-control" id="floatingRua" placeholder="suarua" formControlName="street">
+            <label for="floatingRua">Rua</label>
+            <!-- Mensagem de erro abaixo do campo CPF -->
+            <div class="validation-error" *ngIf="userForm.controls['street'].invalid && formDir.submitted">
+                <p>Este campo é obrigatório!</p>
+            </div>
+        </div>
+        <div class="form-floating w-25 ps-2 pe-2">
+            <input type="text" class="form-control" id="floatingNumero" placeholder="numero" formControlName="number">
+            <label for="floatingNumero">Número</label>
+            <!-- Mensagem de erro abaixo do campo CPF -->
+            <div class="validation-error" *ngIf="userForm.controls['number'].invalid && formDir.submitted">
+                <p>Este campo é obrigatório!</p>
+            </div>
+        </div>
+        <div class="form-floating w-25 ps-2">
+            <input type="text" class="form-control" id="floatingCep" placeholder="11111-111" formControlName="cep">
+            <label for="floatingCep">CEP</label>
+            <!-- Mensagem de erro abaixo do campo CPF -->
+            <div class="validation-error" *ngIf="userForm.controls['cep'].invalid && formDir.submitted">
+                <p>Este campo é obrigatório!</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Cidade e Estado -->
+    <div class="d-flex mb-3">
+        <div class="form-floating w-50 pe-2">
+            <input type="text" class="form-control" id="floatingCidade" placeholder="text" formControlName="city">
+            <label for="floatingCidade">Cidade</label>
+            <!-- Mensagem de erro abaixo do campo Nome -->
+            <div class="validation-error" *ngIf="userForm.controls['city'].invalid && formDir.submitted">
+                <p>Este campo é obrigatório!</p>
+            </div>
+        </div>
+        <div class="form-floating w-50 ps-2">
+            <input type="text" class="form-control" id="floatingEstado" placeholder="text" formControlName="state">
+            <label for="floatingEstado">Estado</label>
+            <!-- Mensagem de erro abaixo do campo Nome -->
+            <div class="validation-error" *ngIf="userForm.controls['state'].invalid && formDir.submitted">
+                <p>Este campo é obrigatório!</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Senha e Confirmar Senha -->
+    <div class="d-flex mb-3">
+        <div class="form-floating w-40 pe-2">
+            <input type="password" class="form-control" id="floatingSenha" placeholder="password" formControlName="password">
+            <label for="floatingSenha">Senha</label>
+            <!-- Mensagem de erro abaixo do campo Nome -->
+            <div class="validation-error" *ngIf="userForm.controls['password'].invalid && formDir.submitted">
+                <p>Este campo é obrigatório!</p>
+            </div>
+        </div>
+        <div class="form-floating w-40 pe-2">
+            <input type="password" class="form-control" id="floatingConfirmarSenha" placeholder="passwordconfirmation" formControlName="confirmation">
+            <label for="floatingConfirmarSenha">Confirmar senha</label>
+            <!-- Mensagem de erro abaixo do campo Nome -->
+            <div class="validation-error" *ngIf="userForm.controls['confirmation'].invalid && formDir.submitted">
+                <p>Este campo é obrigatório!</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Checkbox -->
+    <div class="form-check mb-3">
+        <input type="checkbox" class="form-check-input" id="flexCheckDefault">
+        <label class="form-check-label" for="flexCheckDefault">Mostrar senha</label>
+    </div>
+
+    <!-- Botão -->
+    <!-- <button class="btn custom-btn w-100 py-2" type="submit"></button> -->
+     <input type="submit" value="{{ btnText }}" class="btn custom-btn w-100 py-2">
+</form>    
+

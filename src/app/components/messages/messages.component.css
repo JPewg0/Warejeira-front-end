@@ -1,0 +1,35 @@
+.message {
+    position: fixed;
+    top: 3em;
+    width: 50%;
+    margin-left: 50%;
+    left: -25%;
+    z-index: 9999; /* Valor aumentado para garantir que fique na frente */
+    background-color: #fff;
+    border: 3px solid #003366;
+    padding: 1.5em;
+    display: flex;
+    flex-direction: column;
+}
+
+.message-header {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 1em;
+}
+
+.message-header button {
+    padding: 1em;
+    cursor: pointer;
+    width: 2em; /* Largura fixa */
+    height: 2em; /* Altura fixa */
+    box-sizing: border-box; /* Para garantir que a borda e o padding não aumentem o tamanho total */
+    display: flex;
+    justify-content: center;
+    align-items: center; /* Centraliza o conteúdo, caso o conteúdo do botão seja um ícone */
+}
+
+
+.message-header p {
+    font-size: 1.2em;
+}
