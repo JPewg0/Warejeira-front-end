@@ -49,6 +49,13 @@
             <a routerLink="/user-registration" class="text-decoration-none">Esqueci a senha</a>
         </div>
         <button class="btn custom-btn w-100 py-2">Entrar</button>
+
+        <!-- Botão de Login -->
+        <button type="submit" class="btn custom-btn w-100 py-2" [disabled]="loginForm.invalid">Entrar</button>
+
+        <!-- Criar Nova Conta -->
+        <p>OU</p>
+        <h4><a [routerLink]="'/user-registration'" class="register-link">Criar nova conta</a></h4>
+
     </form>
-    <a href="/user-registration" >Criar conta</a>
 </main>
