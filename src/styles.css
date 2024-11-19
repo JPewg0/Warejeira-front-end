@@ -12,8 +12,11 @@ body{
 }
 
 .container {
-    padding: 70px 0;
+  padding: 70px 15px; 
+  max-width: 1200px; 
+  margin: 0 auto; 
 }
+
 
 p, li{
     font-size: 14px;

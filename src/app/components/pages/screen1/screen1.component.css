@@ -1,0 +1,74 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    height: 100vh;
+}
+
+.container {
+    width: 80%; /* Define a largura do contêiner principal como 80% da largura da tela */
+    border-radius: 4px; /* Arredonda os cantos do contêiner com um raio de 4 pixels */
+    padding: 20px; /* Adiciona um preenchimento interno de 20 pixels ao redor do conteúdo do contêiner */
+    margin-top: 10%; /* Adiciona uma margem superior de 10% para afastar o contêiner do topo */
+}
+
+h1 {
+    color: #007bff;
+    font-size: 1.5em;
+}
+
+table {
+    width: 100%;
+    margin-top: 10px;
+}
+
+th, td {
+    padding: 12px;
+    border-bottom: 1px solid #ddd;
+}
+
+.export-button {
+    float: right; /* Posiciona o botão para o lado direito do contêiner */
+    background-color: #007bff;
+    color: #fff;
+    border: none; /* Remove qualquer borda do botão */
+    padding: 8px 16px; /* Adiciona 8 pixels de preenchimento vertical e 16 pixels de preenchimento horizontal */
+    border-radius: 4px; /* Arredonda os cantos do botão com um raio de 4 pixels */
+    cursor: pointer; /* Altera o cursor para um ponteiro, indicando que o botão é clicável */
+    font-size: 1em; /* Define o tamanho da fonte do botão como 1 vez o tamanho base */
+}
+
+.export-button:hover {
+    background-color: #0056b3;
+}
+
+.pagination {
+    display: flex; /* Usa flexbox para alinhar os botões de paginação */
+    justify-content: center;
+    margin-top: 20px;
+}
+
+.pagination button {
+    background: none; /* Remove o fundo padrão do botão */
+    border: 1px solid #007bff; /* Define uma borda de 1 pixel e cor azul (#007bff) */
+    padding: 5px 10px; /* Adiciona 5 pixels de preenchimento vertical e 10 pixels de preenchimento horizontal */
+    margin: 0 2px; /* Adiciona uma margem de 2 pixels nas laterais dos botões */
+    cursor: pointer; /* Altera o cursor para um ponteiro, indicando que os botões são clicáveis */
+    color: #007bff;
+    border-radius: 4px; /* Arredonda os cantos dos botões com um raio de 4 pixels */
+}
+
+.pagination button:hover {
+    background-color: #007bff;
+    color: white;
+}
+
+.pagination button.active {
+    background-color: #007bff;
+    color: white;
+}
+
+span {
+    font-weight: bold;
+}
