@@ -34,8 +34,6 @@ export class CompanyFormComponent {
       cep: new FormControl('', [Validators.required]),
       city: new FormControl('', [Validators.required]),
       state: new FormControl('', [Validators.required]),
-      password: new FormControl('', [Validators.required]),
-      confirmation: new FormControl('', [Validators.required])
     })
   }
 
@@ -73,14 +71,6 @@ export class CompanyFormComponent {
 
   get state(){
     return this.userForm.get('state')!;
-  }
-
-  get password(){
-    return this.userForm.get('password')!;
-  }
-
-  get passwordconfirmation(){
-    return this.userForm.get('confirmation')!;
   }
 
     submit(){

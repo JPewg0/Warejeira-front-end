@@ -89,33 +89,7 @@
             </div>
         </div>
     </div>
-
-    <!-- Senha e Confirmar Senha -->
-    <div class="d-flex mb-3">
-        <div class="form-floating w-40 pe-2">
-            <input type="password" class="form-control" id="floatingSenha" placeholder="password" formControlName="password">
-            <label for="floatingSenha">Senha</label>
-            <!-- Mensagem de erro abaixo do campo Nome -->
-            <div class="validation-error" *ngIf="userForm.controls['password'].invalid && formDir.submitted">
-                <p>Este campo é obrigatório!</p>
-            </div>
-        </div>
-        <div class="form-floating w-40 pe-2">
-            <input type="password" class="form-control" id="floatingConfirmarSenha" placeholder="passwordconfirmation" formControlName="confirmation">
-            <label for="floatingConfirmarSenha">Confirmar senha</label>
-            <!-- Mensagem de erro abaixo do campo Nome -->
-            <div class="validation-error" *ngIf="userForm.controls['confirmation'].invalid && formDir.submitted">
-                <p>Este campo é obrigatório!</p>
-            </div>
-        </div>
-    </div>
-
-    <!-- Checkbox -->
-    <div class="form-check mb-3">
-        <input type="checkbox" class="form-check-input" id="flexCheckDefault">
-        <label class="form-check-label" for="flexCheckDefault">Mostrar senha</label>
-    </div>
-
+    
     <!-- Botão -->
     <!-- <button class="btn custom-btn w-100 py-2" type="submit"></button> -->
      <input type="submit" value="{{ btnText }}" class="btn custom-btn w-100 py-2">

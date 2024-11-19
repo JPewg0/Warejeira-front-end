@@ -3,8 +3,6 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ReactiveFormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { User } from '../../User';
-import { HttpClient } from '@angular/common/http';
-
 
 @Component({
   selector: 'app-user-form',
