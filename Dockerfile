@@ -1,14 +1,17 @@
 # STAGE 1: Build da aplicação
-FROM node:20-alpine as builder
+FROM node:21-alpine as builder
 
 # Diretório de trabalho
 WORKDIR /app
+
+# Instalar Angular CLI globalmente
+RUN npm install -g @angular/cli
 
 # Copiar package.json e package-lock.json
 COPY package*.json ./
 
 # Instalar dependências
-RUN npm ci
+RUN npm install
 
 # Copiar código fonte
 COPY . .
@@ -23,7 +26,7 @@ FROM nginx:alpine
 COPY nginx.conf /etc/nginx/nginx.conf
 
 # Copiar arquivos de build do stage anterior
-COPY --from=builder /app/dist/*/  /usr/share/nginx/html/
+COPY --from=builder /app/dist/warejeira  /usr/share/nginx/html/
 
 # Expor porta 80
 EXPOSE 80
