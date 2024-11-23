@@ -73,6 +73,7 @@
               "buildTarget": "Warejeira:build:production"
             },
             "development": {
+              "proxyConfig": "proxy.conf.json",
               "buildTarget": "Warejeira:build:development"
             }
           },

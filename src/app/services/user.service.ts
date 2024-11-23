@@ -11,7 +11,7 @@ import { environment } from '../../environments/environment';
 })
 export class UserService {
   private baseApiUrl = environment.baseApiUrl
-  private apiUrl = `${this.baseApiUrl}api/moments`;
+  private apiUrl = `${this.baseApiUrl}/users`;
 
   constructor(private http: HttpClient) { }
 

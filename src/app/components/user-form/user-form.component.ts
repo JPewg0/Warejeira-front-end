@@ -21,18 +21,20 @@ export class UserFormComponent {
 
   ngOnInit(): void{
     this.userForm = new FormGroup({
-      id: new FormControl(''),
       name: new FormControl('', [Validators.required]),
       cpf: new FormControl('', [Validators.required]),
       email: new FormControl('', [Validators.required]),
-      phone: new FormControl('', [Validators.required]),
-      street: new FormControl('', [Validators.required]),
-      number: new FormControl('', [Validators.required]),
+      phone_number: new FormControl('', [Validators.required]),
+      address: new FormControl('', [Validators.required]),
+      home_number: new FormControl('', [Validators.required]),
       cep: new FormControl('', [Validators.required]),
       city: new FormControl('', [Validators.required]),
-      state: new FormControl('', [Validators.required]),
+      uf: new FormControl('', [Validators.required]),
+      district: new FormControl('', [Validators.required]),
+      complement: new FormControl('', [Validators.required]),
       password: new FormControl('', [Validators.required]),
-      confirmation: new FormControl('', [Validators.required])
+      password_confirmation: new FormControl('', [Validators.required]),
+      birth_date: new FormControl('', [Validators.required])
     })
   }
 
@@ -76,8 +78,20 @@ export class UserFormComponent {
     return this.userForm.get('password')!;
   }
 
-  get passwordconfirmation(){
-    return this.userForm.get('confirmation')!;
+  get password_confirmation(){
+    return this.userForm.get('date')!;
+  }
+
+  get date(){
+    return this.userForm.get('date')!;
+  }
+
+  get complement(){
+    return this.userForm.get('complement')!;
+  }
+
+  get district(){
+    return this.userForm.get('district')!;
   }
 
     submit(){

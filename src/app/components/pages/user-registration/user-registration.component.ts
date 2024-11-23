@@ -25,26 +25,38 @@ export class UserRegistrationComponent {
     ){}
 
     async createHandler(user: User){
+      const userData = {
+
+        user: {
+          name: user.name,
+          email: user.email,
+          cpf: user.cpf,
+          phone_number: user.phone_number,
+          birth_date: user.birth_date,
+          password: user.password,
+          password_confirmation: user.password_confirmation,
+          address: {
+            address: user.address,
+            cep: user.cep,
+            city: user.city,
+            complement: user.complement,
+            district: user.district,
+            home_number: user.home_number,
+            uf: user.uf
+        }
+      }
+    };
+
+      // Criar o FormData
       const formData = new FormData();
 
-      formData.append("name", user.name);
-      formData.append("cpf", user.cpf);
-      formData.append("email", user.email);
-      formData.append("phone", user.phone);
-      formData.append("street", user.street);
-      formData.append("number", user.number);
-      formData.append("cep", user.cep);
-      formData.append("city", user.city);
-      formData.append("state", user.state);
-      formData.append("password", user.password);
-      formData.append("confirmation", user.confirmation);
-
-      // todo
+      // Adicionar os dados como JSON string
+      formData.append('user', JSON.stringify(userData.user));
 
       await this.userService.createUser(formData).subscribe();
 
-      this.messageService.add('Cadastro foi realizado com sucesso!')
-
       this.router.navigate(['/login']);
-    }
+
+  }
+    
 }

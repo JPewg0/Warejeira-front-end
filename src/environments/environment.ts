@@ -5,6 +5,6 @@ export interface Environment {
   
   export const environment: Environment = {
     production: false,
-    baseApiUrl: 'http://localhost:3333/',
+    baseApiUrl: 'http://localhost:4000/api',
   };
   

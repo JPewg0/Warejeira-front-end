@@ -32,11 +32,19 @@
                 <p>Este campo é obrigatório!</p>
             </div>
         </div>
-        <div class="form-floating w-50 ps-2">
-            <input type="text" class="form-control" id="floatingTelefone" placeholder="(11)11111-1111" formControlName="phone">
+        <div class="form-floating w-25 ps-2">
+            <input type="text" class="form-control" id="floatingTelefone" placeholder="(11)11111-1111" formControlName="phone_number">
             <label for="floatingTelefone">Telefone</label>
             <!-- Mensagem de erro abaixo do campo Nome -->
-            <div class="validation-error" *ngIf="userForm.controls['phone'].invalid && formDir.submitted">
+            <div class="validation-error" *ngIf="userForm.controls['phone_number'].invalid && formDir.submitted">
+                <p>Este campo é obrigatório!</p>
+            </div>
+        </div>
+        <div class="form-floating w-25 ps-2">
+            <input type="date" class="form-control" id="floatingDate" placeholder="01/01/2001" formControlName="birth_date">
+            <label for="floatingDate">Data de nascimento</label>
+            <!-- Mensagem de erro abaixo do campo Nome -->
+            <div class="validation-error" *ngIf="userForm.controls['birth_date'].invalid && formDir.submitted">
                 <p>Este campo é obrigatório!</p>
             </div>
         </div>
@@ -44,19 +52,43 @@
 
     <!-- Rua, Número e CEP -->
     <div class="d-flex justify-content-between mb-3">
-        <div class="form-floating w-50 pe-2">
-            <input type="text" class="form-control" id="floatingRua" placeholder="suarua" formControlName="street">
+        <div class="form-floating w-75 pe-2">
+            <input type="text" class="form-control" id="floatingRua" placeholder="suarua" formControlName="address">
             <label for="floatingRua">Rua</label>
             <!-- Mensagem de erro abaixo do campo CPF -->
-            <div class="validation-error" *ngIf="userForm.controls['street'].invalid && formDir.submitted">
+            <div class="validation-error" *ngIf="userForm.controls['address'].invalid && formDir.submitted">
                 <p>Este campo é obrigatório!</p>
             </div>
         </div>
         <div class="form-floating w-25 ps-2 pe-2">
-            <input type="text" class="form-control" id="floatingNumero" placeholder="numero" formControlName="number">
+            <input type="text" class="form-control" id="floatingNumero" placeholder="numero" formControlName="home_number">
             <label for="floatingNumero">Número</label>
             <!-- Mensagem de erro abaixo do campo CPF -->
-            <div class="validation-error" *ngIf="userForm.controls['number'].invalid && formDir.submitted">
+            <div class="validation-error" *ngIf="userForm.controls['home_number'].invalid && formDir.submitted">
+                <p>Este campo é obrigatório!</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Complemento -->
+    <div class="d-flex justify-content-between mb-3">
+        <div class="form-floating w-100 pe-2">
+            <input type="text" class="form-control" id="floatingComplemento" placeholder="complemento" formControlName="complement">
+            <label for="floatingComplemento">Complemento</label>
+            <!-- Mensagem de erro abaixo do campo CPF -->
+            <div class="validation-error" *ngIf="userForm.controls['complement'].invalid && formDir.submitted">
+                <p>Este campo é obrigatório!</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- cep e bairro -->
+    <div class="d-flex justify-content-between mb-3">
+        <div class="form-floating w-75 pe-2">
+            <input type="text" class="form-control" id="floatingBairro" placeholder="seubairro" formControlName="district">
+            <label for="floatingBairro">Bairro</label>
+            <!-- Mensagem de erro abaixo do campo CPF -->
+            <div class="validation-error" *ngIf="userForm.controls['district'].invalid && formDir.submitted">
                 <p>Este campo é obrigatório!</p>
             </div>
         </div>
@@ -72,7 +104,7 @@
 
     <!-- Cidade e Estado -->
     <div class="d-flex mb-3">
-        <div class="form-floating w-50 pe-2">
+        <div class="form-floating w-75 pe-2">
             <input type="text" class="form-control" id="floatingCidade" placeholder="text" formControlName="city">
             <label for="floatingCidade">Cidade</label>
             <!-- Mensagem de erro abaixo do campo Nome -->
@@ -80,11 +112,11 @@
                 <p>Este campo é obrigatório!</p>
             </div>
         </div>
-        <div class="form-floating w-50 ps-2">
-            <input type="text" class="form-control" id="floatingEstado" placeholder="text" formControlName="state">
+        <div class="form-floating w-25 ps-2">
+            <input type="text" class="form-control" id="floatingEstado" placeholder="text" formControlName="uf">
             <label for="floatingEstado">Estado</label>
             <!-- Mensagem de erro abaixo do campo Nome -->
-            <div class="validation-error" *ngIf="userForm.controls['state'].invalid && formDir.submitted">
+            <div class="validation-error" *ngIf="userForm.controls['uf'].invalid && formDir.submitted">
                 <p>Este campo é obrigatório!</p>
             </div>
         </div>
@@ -101,10 +133,10 @@
             </div>
         </div>
         <div class="form-floating w-40 pe-2">
-            <input type="password" class="form-control" id="floatingConfirmarSenha" placeholder="passwordconfirmation" formControlName="confirmation">
+            <input type="password" class="form-control" id="floatingConfirmarSenha" placeholder="passwordconfirmation" formControlName="password_confirmation">
             <label for="floatingConfirmarSenha">Confirmar senha</label>
             <!-- Mensagem de erro abaixo do campo Nome -->
-            <div class="validation-error" *ngIf="userForm.controls['confirmation'].invalid && formDir.submitted">
+            <div class="validation-error" *ngIf="userForm.controls['password_confirmation'].invalid && formDir.submitted">
                 <p>Este campo é obrigatório!</p>
             </div>
         </div>

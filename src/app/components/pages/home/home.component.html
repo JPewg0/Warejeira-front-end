@@ -1,13 +1,16 @@
 <main class="d-flex flex-column justify-content-center align-items-center vh-100">  
     <div class="categorias" id="nav-categorias">
-        <h1 class="titulo">Produtos em destaque</h1>
 
-        <div>
+        <div *ngIf="products.length > 0; else noProducts">
+
+            <h1 class="titulo">Produtos em destaque</h1>
+
             <div class="linha">
-                <div class="col-1">
-                    <img src="https://st.depositphotos.com/3538103/5151/i/450/depositphotos_51514387-stock-photo-photograph-icon.jpg" alt="">
-                    <h4>nome do produto</h4>
-                    <p>R$0,00</p>
+                <div class="col-1" *ngFor="let product of products">
+                    <img src="{{baseApiUrl}}uploads/{{product.image}}" alt="{{ product.name}}">
+                    <h4>{{ product.name }}</h4>
+                    <p>{{ product.price }}</p>
+                    <p><a routerLink="products/{{product.id}}"></a></p>
                 </div>
 
                 <div class="col-1">
@@ -57,7 +60,7 @@
         </div>
     </div>
     <ng-template #noProducts>
-        <h1>Não há Produtos cadastrados!</h1>
+        <h1>Não há produtos cadastrados!</h1>
     </ng-template>
 
 </main>

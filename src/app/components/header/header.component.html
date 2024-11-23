@@ -5,7 +5,8 @@
         </a>
         <div class="collapse navbar-collapse">
             <form class="d-flex me-2" role="search">
-                <input class="form-control" type="search" placeholder="Pesquisar Produto" aria-label="Search">
+                <input class="form-control" type="text" placeholder="Pesquisar Produto" aria-label="Search" 
+                (imput)="search($event)">
             </form>
             <ul class="navbar-nav me-auto">
                 <li class="nav-item dropdown">
@@ -21,9 +22,9 @@
                 </li>
             </ul>
             <div id="navbar-links" class="d-flex">
-                <a class="nav-item nav-link" href="/shopping-cart" id="carrinho">Carrinho</a>
-                <a class="nav-item nav-link" id="perfil">Pedidos</a>
-                <a class="nav-item nav-link" href="/login"  id="perfil">Seu Perfil</a>
+                <a class="nav-item nav-link" routerLink="/shopping-cart" id="carrinho">Carrinho</a>
+                <a class="nav-item nav-link" routerLink="product/id" id="perfil">Pedidos</a>
+                <a class="nav-item nav-link" routerLink="/login"  id="perfil">Seu Perfil</a>
             </div>            
         </div>
     </nav>
