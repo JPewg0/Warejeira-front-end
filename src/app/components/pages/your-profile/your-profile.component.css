@@ -19,12 +19,35 @@
 }
 
 .link-delete {
-    color: black; /* Cor do link */
-    text-decoration: underline; /* Sublinhado */
-    cursor: pointer; /* Muda o cursor para indicar que é clicável */
-    padding-top: 30px;
+    background-color: #ff4d4d; /* Cor de fundo vermelha para indicar exclusão */
+    color: white;
+    border: none;
+    font-weight: bold;
 }
 
 .link-delete:hover {
-    color: red; /* Cor ao passar o mouse (opcional) */
+    background-color: #e60000; /* Cor mais escura ao passar o mouse */
+    color: white;
+}
+
+.logout {
+    border: 2px solid #dc3545; /* Cor da borda (vermelho) */
+    background-color: #dc3545; /* Cor de fundo (vermelho) */
+    color: white; /* Cor do texto */
+    font-weight: bold; /* Negrito */
+    font-size: large;  /* Tamanho da fonte */
+    padding: 0.5rem 1rem; /* Espaçamento interno */
+    transition: background-color 0.3s, color 0.3s; /* Efeito de transição */
+    width: 300px; /* Largura */
+    height: 50px; /* Altura */
+    display: flex; /* Flexbox para alinhar o conteúdo */
+    align-items: center; /* Alinha verticalmente */
+    justify-content: center; /* Alinha horizontalmente */
+}
+
+/* Efeito de hover */
+.logout:hover {
+    background-color: #c82333; /* Cor de fundo mais escura ao passar o mouse */
+    border-color: #bd2130; /* Cor da borda mais escura ao passar o mouse */
+    color: white; /* Garante que o texto continue branco */
 }

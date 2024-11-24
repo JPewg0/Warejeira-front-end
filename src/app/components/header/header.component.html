@@ -23,8 +23,8 @@
             </ul>
             <div id="navbar-links" class="d-flex">
                 <a class="nav-item nav-link" routerLink="/shopping-cart" id="carrinho">Carrinho</a>
-                <a class="nav-item nav-link" routerLink="product/id" id="perfil">Pedidos</a>
-                <a class="nav-item nav-link" routerLink="/login"  id="perfil">Seu Perfil</a>
+                <a *ngIf="!isAuthenticated" class="nav-item nav-link" routerLink="/login" id="perfil">Login</a>
+                <a *ngIf="isAuthenticated" class=" nav-item nav-link" routerLink="/your-profile">Seu perfil</a>
             </div>            
         </div>
     </nav>

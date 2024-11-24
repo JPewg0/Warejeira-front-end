@@ -6,6 +6,7 @@ import { MessagesService } from '../../../services/messages.service';
 import { RouterLink } from '@angular/router';
 import { AuthService } from '../../../services/authentication.service';
 import { Router } from '@angular/router';
+import { LoginData } from '../../../Login';
 
 @Component({
   selector: 'app-login',
@@ -15,47 +16,46 @@ import { Router } from '@angular/router';
   styleUrl: './login.component.css'
 })
 export class LoginComponent {
-  loginForm: FormGroup;
-  showPassword: boolean = false; // Variável para controlar a visibilidade da senha
+  loginForm: FormGroup; // Formulário de login
+  showPassword: boolean = false;  // Variável para controlar a visibilidade da senha
+  message: string | null = null; // Mensagem de erro ou sucesso
 
   constructor(
     private fb: FormBuilder,
-    private messagesService: MessagesService,  // Mantém privado
     private authService: AuthService,
-    private router: Router
+    private router: Router,
+    private messagesService: MessagesService
   ) {
+    // Inicializa o formulário com validações
     this.loginForm = this.fb.group({
-      email: ['', [Validators.required, Validators.email]],
-      password: ['', [Validators.required, Validators.minLength(6)]]
+      email: ['', [Validators.required, Validators.email]], // Validação de email
+      password: ['', [Validators.required, Validators.minLength(6)]] // Validação de senha
     });
-  }
-
-  // Getter para acessar a mensagem no template
-  get message() {
-    return this.messagesService.message;
   }
 
   // Método para alternar a visibilidade da senha
   togglePasswordVisibility() {
-    this.showPassword = !this.showPassword; // Alterna a visibilidade da senha
+    this.showPassword = !this.showPassword; // Alterna entre 'text' e 'password'
   }
 
   // Método de envio do formulário
   onSubmit() {
     if (this.loginForm.valid) {
-      const { email, password } = this.loginForm.value;
+      const { email, password } = this.loginForm.value; // Extrai os valores do formulário
 
-      // Verificando as credenciais no db.json
+      // Chama o serviço de autenticação
       this.authService.authenticateUser(email, password).subscribe(isAuthenticated => {
         if (isAuthenticated) {
+          // Se a autenticação for bem-sucedida, exibe a mensagem e navega para a página inicial
           this.messagesService.add('Login realizado com sucesso!');
-          // Redireciona para a página principal ou outra página
-          this.router.navigate(['/']);
+          this.router.navigate(['/']); // Redireciona para a página principal
         } else {
+          // Se falhar, exibe a mensagem de erro
           this.messagesService.add('E-mail ou senha inválidos.');
         }
       });
     } else {
+      // Se o formulário for inválido, exibe uma mensagem de erro
       this.messagesService.add('Preencha todos os campos corretamente.');
     }
   }

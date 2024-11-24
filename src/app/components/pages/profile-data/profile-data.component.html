@@ -1,28 +1,25 @@
-<main>
-    <body>
-        <div class="container">
-            <div class="coluna">
-                <p>Nome</p>
-                <p>Email</p>
-                <p>Rua</p>
-                <p>Cidade</p>
-                <p>CEP</p>
-            </div>
-            <div class="coluna">
-                <p>CPF</p>
-                <p>Telefone</p>
-                <p>Número</p>
-                <p>Estado</p>
-                <p><span>Alterar informações</span></p>
-            </div>
-        </div>
-        <div>
-            <button class="botao botao-seus-produtos">Seus Produtos</button>
-            <button class="botao botao-gerar-relatorio">Gerar Relatório</button>
-            <button class="botao botao-pedidos">Pedidos</button>
-        </div>
-        <div class="voltar">
-            <p><span>Voltar para o perfil</span></p>
-        </div>
-    </body>
-</main>
+<main *ngIf="userData; else loading" class="d-flex flex-column justify-content-center align-items-center vh-100">
+    <h1 class="mb-3 fw-bold text-center">Suas informações</h1>
+    <div class="container">
+      <div class="coluna">
+        <p><strong>Nome:</strong> {{ userData?.name }}</p>
+        <p><strong>Email:</strong> {{ userData?.email }}</p>
+        <p><strong>Rua:</strong> {{ userData?.address?.address }}</p>
+        <p><strong>Cidade:</strong> {{ userData?.address?.city }}</p>
+        <p><strong>CEP:</strong> {{ userData?.address?.cep }}</p>
+      </div>
+      <div class="coluna">
+        <p><strong>CPF:</strong> {{ userData?.cpf }}</p>
+        <p><strong>Telefone:</strong> {{ userData?.phone_number }}</p>
+        <p><strong>Número:</strong> {{ userData?.address?.home_number }}</p>
+        <p><strong>Estado:</strong> {{ userData?.address?.uf }}</p>
+        <p><a class="link-alterar"  href="/edit-profile/{{ userData?.id }}">Alterar informações</a></p>
+      </div>
+    </div>
+        <a [routerLink]="'/your-profile'" class="voltar">Voltar para o perfil</a>
+  </main>
+  
+  <ng-template #loading>
+    <p>Carregando dados...</p>
+  </ng-template>
+  

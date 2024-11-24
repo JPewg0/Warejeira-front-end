@@ -60,3 +60,37 @@ h4{
     font-size: 20px;
     color: gray;
 }
+
+/* Estilo base para o link */
+.link-produto {
+    text-decoration: none;        /* Remove o sublinhado padrão */
+    color: #fff;                  /* Cor do texto */
+    background-color: #007BFF;    /* Cor de fundo */
+    padding: 5px 15px;           /* Espaçamento interno */
+    border-radius: 5px;           /* Bordas arredondadas */
+    font-size: 14px;              /* Tamanho da fonte */
+    font-weight: bold;            /* Fonte em negrito */
+    display: inline-block;        /* Faz o link se comportar como um botão */
+    transition: background-color 0.3s, transform 0.3s; /* Transições suaves */
+  }
+  
+  /* Estilo para o hover - quando o mouse passa por cima */
+  .link-produto:hover {
+    background-color: #0056b3;    /* Cor de fundo mais escura */
+    transform: scale(1.1);         /* Aumenta o tamanho ligeiramente */
+  }
+  
+  /* Estilo para o focus - quando o link é focado */
+  .link-produto:focus {
+    outline: none;                /* Remove a borda padrão do foco */
+    box-shadow: 0 0 5px rgba(0, 123, 255, 0.5); /* Sombra azul suave */
+  }
+  
+  /* Estilo para o link desabilitado (caso haja essa situação) */
+  .link-produto:disabled {
+    background-color: #ccc;      /* Cor de fundo mais clara */
+    color: #666;                 /* Cor de texto mais escura */
+    cursor: not-allowed;         /* Muda o cursor para indicar desabilitado */
+    pointer-events: none;        /* Impede interação com o link */
+  }
+  

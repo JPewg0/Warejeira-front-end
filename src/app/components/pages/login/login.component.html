@@ -1,60 +1,60 @@
 <main class="d-flex justify-content-center align-items-center vh-100">
-  <form [formGroup]="loginForm" (ngSubmit)="onSubmit()" class="w-25">
-      <h1 class="mb-3 fw-bold">Entrar</h1>
+  <form [formGroup]="loginForm" (ngSubmit)="onSubmit()" class="w-25 w-sm-100">
+    <h1 class="mb-3 fw-bold text-center">Entrar</h1>
 
-      <!-- Campo E-mail -->
-      <div class="form-floating mb-3">
-          <input type="email" formControlName="email" class="form-control" id="floatingInput" placeholder="seu-email@gmail.com">
-          <label for="floatingInput">E-mail</label>
-          <div *ngIf="loginForm.get('email')?.invalid && loginForm.get('email')?.touched" class="text-danger">
-              <small *ngIf="loginForm.get('email')?.errors?.['required']">E-mail é obrigatório.</small>
-              <small *ngIf="loginForm.get('email')?.errors?.['email']">Insira um e-mail válido.</small>
-          </div>
+    <!-- Campo E-mail -->
+    <div class="form-floating mb-3">
+      <input type="email" formControlName="email" class="form-control" id="floatingInput" placeholder="seu-email@gmail.com">
+      <label for="floatingInput">E-mail</label>
+      <div *ngIf="loginForm.get('email')?.invalid && loginForm.get('email')?.touched" class="text-danger">
+        <small *ngIf="loginForm.get('email')?.errors?.['required']">E-mail é obrigatório.</small>
+        <small *ngIf="loginForm.get('email')?.errors?.['email']">Insira um e-mail válido.</small>
       </div>
+    </div>
 
-      <!-- Campo Senha -->
-      <div class="form-floating mb-3">
-          <!-- Alteração no tipo do campo input para alternar entre 'password' e 'text' -->
-          <input 
-            [type]="showPassword ? 'text' : 'password'"
-            formControlName="password" 
-            class="form-control" 
-            id="floatingPassword" 
-            placeholder="password"
-          >
-          <label for="floatingPassword">Senha</label>
-          <div *ngIf="loginForm.get('password')?.invalid && loginForm.get('password')?.touched" class="text-danger">
-            <small *ngIf="loginForm.get('password')?.errors?.['required']">Senha é obrigatória.</small>
-            <small *ngIf="loginForm.get('password')?.errors?.['minlength']">A senha deve ter no mínimo 6 caracteres.</small>
-          </div>
-        </div>
-
-      <!-- Exibição de Mensagens -->
-      <div *ngIf="message" class="message" role="alert">
-          <p>{{ message }}</p>
+    <!-- Campo Senha -->
+    <div class="form-floating mb-3">
+      <input 
+        [type]="showPassword ? 'text' : 'password'" 
+        formControlName="password" 
+        class="form-control" 
+        id="floatingPassword" 
+        placeholder="password"
+      >
+      <label for="floatingPassword">Senha</label>
+      <div *ngIf="loginForm.get('password')?.invalid && loginForm.get('password')?.touched" class="text-danger">
+        <small *ngIf="loginForm.get('password')?.errors?.['required']">Senha é obrigatória.</small>
+        <small *ngIf="loginForm.get('password')?.errors?.['minlength']">A senha deve ter no mínimo 6 caracteres.</small>
       </div>
+    </div>
 
-      <!-- Checkbox e Link -->
-      <div class="d-flex justify-content-between align-items-center my-3">
-          <div class="form-check">
-              <input 
-                type="checkbox" 
-                class="form-check-input" 
-                id="flexCheckDefault" 
-                (change)="togglePasswordVisibility()" 
-                [checked]="showPassword"
-              >
-              <label class="form-check-label" for="flexCheckDefault">Mostrar senha</label>
-            </div>
-            <a routerLink="/user-registration" class="text-decoration-none">Esqueci a senha</a>
-        </div>
+    <!-- Exibição de Mensagens -->
+    <div *ngIf="message" class="message alert alert-info" role="alert">
+      <p>{{ message }}</p>
+    </div>
 
-        <!-- Botão de Login -->
-        <button type="submit" class="btn custom-btn w-100 py-2" [disabled]="loginForm.invalid">Entrar</button>
+    <!-- Checkbox e Link -->
+    <div class="d-flex justify-content-between align-items-center my-3">
+      <div class="form-check">
+        <input 
+          type="checkbox" 
+          class="form-check-input" 
+          id="flexCheckDefault" 
+          (change)="togglePasswordVisibility()" 
+          [checked]="showPassword"
+        >
+        <label class="form-check-label" for="flexCheckDefault">Mostrar senha</label>
+      </div>
+      <a routerLink="/user-forgot-password" class="text-decoration-none">Esqueci a senha</a>
+    </div>
 
-        <!-- Criar Nova Conta -->
-        <p>OU</p>
-        <h4><a [routerLink]="'/user-registration'" class="register-link">Criar nova conta</a></h4>
+    <!-- Botão de Login -->
+    <button type="submit" class="btn custom-btn w-100 py-2" [disabled]="loginForm.invalid">Entrar</button>
 
-    </form>
+    <!-- Criar Nova Conta -->
+    <p class="text-center mt-3">OU</p>
+    <h4 class="text-center">
+      <a [routerLink]="'/user-registration'" class="register-link">Criar nova conta</a>
+    </h4>
+  </form>
 </main>

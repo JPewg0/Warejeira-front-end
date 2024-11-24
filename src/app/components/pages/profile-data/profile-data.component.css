@@ -5,6 +5,7 @@
     margin-top: 10%;
     display: flex; /* Ativa o layout flex */
     gap: 20px; /* Define o espaço entre as colunas */
+    background-color: #f0f0f0; /* Cor de fundo cinza claro */
 }
 
 p {
@@ -43,4 +44,23 @@ span {
 .botao:hover {
     background-color: #003366;
     color: white;
+}
+
+.link-alterar{
+    font-size: 1.2pc;
+    padding: 7px;
+    color: rgb(94, 94, 94);
+}
+
+.voltar {
+    color: #7799; /* Cor padrão */
+    font-weight: bold;
+    font-size: 18px;
+    padding-top: 10px;
+    text-decoration: none; /* Remove o sublinhado, se desejado */
+}
+
+.voltar:hover {
+    color: #003366; /* Cor ao passar o mouse */
+    text-decoration: underline; /* Sublinha o texto no hover */
 }

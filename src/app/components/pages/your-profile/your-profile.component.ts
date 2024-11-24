@@ -1,5 +1,8 @@
 import { Component } from '@angular/core';
 import { RouterLink } from '@angular/router';
+import { AuthService } from '../../../services/authentication.service';
+import { Router } from '@angular/router';
+import { UserService } from '../../../services/user.service';
 
 @Component({
   selector: 'app-your-profile',
@@ -10,4 +13,52 @@ import { RouterLink } from '@angular/router';
 })
 export class YourProfileComponent {
 
+  userId: string | null = null; // Variável para armazenar o ID do usuário
+
+  constructor(
+    private authService: AuthService,  // Serviço de autenticação
+    private userService: UserService,  // Serviço que lida com os dados do usuário
+    private router: Router            // Para navegação
+  ) {}
+
+  ngOnInit(): void {
+    // Pega o 'userId' do localStorage ou outra fonte de dados
+    this.userId = localStorage.getItem('userId');  // Ajuste conforme o seu fluxo
+    if (this.userId) {
+      console.log('User ID recuperado do localStorage:', this.userId);
+    } else {
+      console.warn('User ID não encontrado no localStorage');
+    }
+  }
+
+  // Método para chamar o logout e redirecionar para a página de login
+  onLogout(): void {
+    this.authService.logout().subscribe(() => {
+      // Após o logout, redireciona para a página de login
+      this.router.navigate(['/login']);
+    });
+  }
+
+  // Método para excluir a conta
+  onDeleteAccount(): void {
+    if (confirm('Tem certeza que deseja excluir sua conta? Esta ação não pode ser desfeita.')) {
+      if (this.userId) {
+        this.userService.deleteUserAccount(this.userId).subscribe(
+          () => {
+            console.log('Conta excluída com sucesso');
+            // Após excluir, desloga o usuário e redireciona para a página de login
+            this.authService.logout().subscribe(() => {
+              this.router.navigate(['/login']);
+            });
+          },
+          (error) => {
+            console.error('Erro ao excluir a conta:', error);
+            alert('Erro ao excluir a conta. Tente novamente mais tarde.');
+          }
+        );
+      } else {
+        alert('ID do usuário não encontrado!');
+      }
+    }
+  }
 }
