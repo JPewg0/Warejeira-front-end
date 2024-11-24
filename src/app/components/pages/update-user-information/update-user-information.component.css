@@ -1,0 +1,21 @@
+main {
+    margin-top: 3%;
+}
+
+h1 {
+    text-align: center;
+}
+
+h3 {
+    color: gray;
+    font-size: 20px;
+    text-align: center;
+    padding: 10px;
+}
+
+h4 {
+    color: gray;
+    text-decoration: underline;
+    font-size: 24px;
+    text-align: center;
+}
