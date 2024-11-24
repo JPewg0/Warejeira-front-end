@@ -32,13 +32,6 @@ main {
     flex: 1; /* A descrição ocupa o espaço disponível */
 }
 
-textarea {
-    background-color: #e0e0ea;
-    color: gray;
-    width: 100%; /* Garante que a textarea ocupa todo o espaço disponível */
-    resize: none; /* Evita redimensionamento */
-}
-
 .imagem {
     width: 80px;
     height: 100px;
@@ -60,53 +53,9 @@ textarea {
     color: gray;
 }
 
-select {
-    background-color: #e0e0ea;
-    color: gray;
-}
-
-.excluir {
-    background-color: #e0e0ea;
-    color: gray;
-}
-
-.preco h3 {
-    margin: 0;
+.info h4 {
+    margin-bottom: 10px;
+    margin-top: 30%;
     font-size: 16px;
-}
-
-.acoes {
-    display: flex;
-    align-items: flex-end;
-    gap: 10px;
-}
-
-.preco{
-    margin-left: 10px;
-    margin-bottom: 20%;
-    text-align: center; /* Centraliza o texto no espaço reservado */
-}
-
-.acoes select,
-.acoes button {
-    padding: 5px 10px;
-    border: 1px solid;
-    border-radius: 4px;
-    background-color: #e0e0ea;
-    cursor: pointer;
-}
-
-.acoes button.fechar-pedido {
-    background-color: #005eff;
-    color: white;
-    border: none;
-    margin-top: 120%;
-}
-
-.acoes button:hover {
-    background-color: white;
-}
-
-.acoes button.fechar-pedido:hover {
-    background-color: #004ecc;
+    color: gray;
 }

@@ -60,15 +60,11 @@ textarea {
     color: gray;
 }
 
-select {
+.visualizar-produto {
     background-color: #e0e0ea;
     color: gray;
 }
 
-.excluir {
-    background-color: #e0e0ea;
-    color: gray;
-}
 
 .preco h3 {
     margin: 0;
@@ -85,9 +81,10 @@ select {
     margin-left: 10px;
     margin-bottom: 20%;
     text-align: center; /* Centraliza o texto no espaço reservado */
+    visibility: hidden; /* Torna o conteúdo invisível, mas mantém o espaço ocupado */
 }
 
-.acoes select,
+.acoes .visualizar-produto,
 .acoes button {
     padding: 5px 10px;
     border: 1px solid;
@@ -96,11 +93,11 @@ select {
     cursor: pointer;
 }
 
-.acoes button.fechar-pedido {
+.acoes button.confirmar-entrega {
     background-color: #005eff;
     color: white;
     border: none;
-    margin-top: 120%;
+    margin-top: 100%;
 }
 
 .acoes button:hover {
