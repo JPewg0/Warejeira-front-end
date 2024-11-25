@@ -35,7 +35,7 @@ export const routes: Routes = [
     {path: 'payment1', component: Payment1Component},
     {path: 'product-registration', component: ProductRegistrationComponent},
     {path: 'screen1', component: Screen1Component},
-    {path: 'scren2', component: Screen2Component},
+    {path: 'screen2', component: Screen2Component},
     {path: 'update-company-information', component: UpdateCompanyInformationComponent},
     {path: 'update-user-information', component: UpdateUserInformationComponent},
     {path: 'your-company', component: YourCompanyComponent},
