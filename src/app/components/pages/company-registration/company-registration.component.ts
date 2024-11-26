@@ -21,27 +21,36 @@ export class CompanyRegistrationComponent {
     private router: Router
   ){}
 
-  async createHandler(company: Company){
-    const formData = new FormData();
+  async createHandler(company: Company) {
+    const companyData = {
+      name: company.name,
+      email: company.email,
+      cpf: company.cnpj,
+      phone_number: company.phone_number,
+      password: company.password,
+      password_confirmation: company.password_confirmation,
+      address: {
+        address: company.address,
+        cep: company.cep,
+        city: company.city,
+        complement: company.complement,
+        district: company.district,
+        number: company.number,
+        uf: company.uf
+      }
+    };
 
-    formData.append("name", company.name);
-    formData.append("cpf", company.cnpj);
-    formData.append("email", company.email);
-    formData.append("phone", company.phone);
-    formData.append("street", company.street);
-    formData.append("number", company.number);
-    formData.append("cep", company.cep);
-    formData.append("city", company.city);
-    formData.append("state", company.state);
-    formData.append("password", company.password);
-    formData.append("confirmation", company.confirmation);
+    const phoenixFormattedData = {
+      company: companyData  // Mantém a estrutura esperada pelo Phoenix
+    };
 
-    // todo
-
-    await this.companyService.createCompany(formData).subscribe();
-
-    this.messageService.add('Cadastro foi realizado com sucesso!')
+    await this.companyService.createCompany(phoenixFormattedData).subscribe({
+      next: (response) => console.log('Sucesso:', response),
+      error: (error) => console.error('Erro:', error)
+    });;
 
     this.router.navigate(['/login']);
+
   }
+
 }

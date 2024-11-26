@@ -33,7 +33,7 @@ export class UserRegistrationComponent {
       birth_date: user.birth_date,
       password: user.password,
       password_confirmation: user.password_confirmation,
-      address: {
+      address:[ {
         address: user.address,
         cep: user.cep,
         city: user.city,
@@ -41,7 +41,7 @@ export class UserRegistrationComponent {
         district: user.district,
         home_number: user.home_number,
         uf: user.uf
-      }
+      }]
     };
 
     const phoenixFormattedData = {

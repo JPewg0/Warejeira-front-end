@@ -24,9 +24,9 @@
                     </div>
                 </div>
                 <div class="form-floating w-50 ps-2">
-                    <input type="text" class="form-control" id="floatingEstoque" placeholder="1.000" formControlName="stock">
+                    <input type="text" class="form-control" id="floatingEstoque" placeholder="1.000" formControlName="stock_quantity">
                     <label for="floatingEstoque">Estoque</label>
-                    <div class="validation-error" *ngIf="productForm.controls['stock'].invalid && formDir.submitted">
+                    <div class="validation-error" *ngIf="productForm.controls['stock_quantity'].invalid && formDir.submitted">
                         <p>Este campo é obrigatório!</p>
                     </div>
                 </div>
@@ -45,13 +45,34 @@
         <!-- Coluna Direita -->
         <div class="w-50 ps-3">
             <!-- Categoria -->
-            <div class="form-floating mb-3">
-                <input type="text" class="form-control" id="floatingCategoria" placeholder="Categoria" formControlName="category">
+            <!--<div class="form-floating mb-3">
+                <select
+                  class="form-control"
+                  id="floatingCategoria"
+                  formControlName="category"
+                >
+                  <option value="" disabled selected>Selecione uma categoria</option>
+                  <option *ngFor="let categoria of categorias" [value]="categoria.id">
+                    {{ categoria.name }}
+                  </option>
+                </select>
                 <label for="floatingCategoria">Categoria</label>
-                <div class="validation-error" *ngIf="productForm.controls['category'].invalid && formDir.submitted">
-                    <p>Este campo é obrigatório!</p>
+                <div
+                  class="validation-error"
+                  *ngIf="productForm.controls['category'].invalid && productForm.touched"
+                >
+                  <p>Este campo é obrigatório!</p>
                 </div>
-            </div>
+              </div> -->
+              <div>
+                <label for="category">Categoria</label>
+                <!-- Usando formControlName para vincular o campo ao formulário -->
+                <select formControlName="category" id="category" class="form-control">
+                  <option *ngFor="let category of categorias" [value]="category.id">
+                    {{ category.name }}
+                  </option>
+                </select>
+              </div>
 
             <!-- Visualização da Imagem e Input de Arquivo -->
             <div class="image-upload text-center mt-auto">

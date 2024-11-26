@@ -15,7 +15,7 @@ export class CompanyService {
 
   constructor(private http: HttpClient) { }
 
-  createCompany(formData: FormData): Observable<FormData>{
-    return this.http.post<FormData>(this.apiUrl, formData);
+  createCompany(formData: any): Observable<any> {
+    return this.http.post<any>(this.apiUrl, formData);
   }
 }

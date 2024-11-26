@@ -1,3 +1,4 @@
+
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { HomeComponent } from './components/pages/home/home.component';
@@ -18,6 +19,7 @@ import { UpdateCompanyInformationComponent } from './components/pages/update-com
 import { UpdateUserInformationComponent } from './components/pages/update-user-information/update-user-information.component';
 import { YourCompanyComponent } from './components/pages/your-company/your-company.component';
 import { YourOrdersComponent } from './components/pages/your-orders/your-orders.component';
+import { UserEditComponent } from './components/pages/user-edit/user-edit.component';
 
 export const routes: Routes = [
     {path: '', component: HomeComponent},
@@ -25,11 +27,12 @@ export const routes: Routes = [
     {path: 'login', component: LoginComponent},
     {path: 'user-registration', component: UserRegistrationComponent },
     {path: 'shopping-cart', component: ShoppingCartComponent},
-    {path: 'Company-registration', component: CompanyRegistrationComponent},
+    {path: 'company-registration', component: CompanyRegistrationComponent},
     {path: 'products/:id', component: ProductComponent},
     {path: 'profile-data/:id', component: ProfileDataComponent},
     {path: 'profile-data', component: ProfileDataComponent},
     {path: 'your-profile', component: YourProfileComponent},
+    {path: 'profile-data/:profileId/user/edit/:userId', component: UserEditComponent},
     {path: 'company-orders', component: CompanyOrdersComponent},
     {path: 'new-company', component: NewCompanyComponent},
     {path: 'payment1', component: Payment1Component},

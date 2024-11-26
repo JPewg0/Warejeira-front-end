@@ -21,21 +21,46 @@ export class ProductRegistrationComponent {
     private router: Router
   ){}
 
-  async createHandler(product: Product){
-    const formData = new FormData();
-
-    formData.append("name", product.name);
-    formData.append("cpf", product.category);
-    formData.append("email", product.price);
-    formData.append("phone", product.description);
-
-    // todo
-
-    await this.productService.createProduct(formData).subscribe();
-
-    this.messageService.add('Cadastro foi realizado com sucesso!')
-
-    this.router.navigate(['/login']);
+  async createHandler(product: Product) {
+    const productData = {
+      name: product.name,
+      category: product.category,
+      stock_quantity: product.stock_quantity,
+      price: product.price,
+    };
+  
+    const phoenixFormattedData = {
+      product: productData, // Mantém a estrutura esperada pelo backend
+    };
+  
+    try {
+      // Criar produto
+      this.productService.createProduct(phoenixFormattedData).subscribe({
+        next: (response) => {
+          console.log('Produto criado com sucesso:', response);
+  
+          // Preparar `FormData` para o upload da imagem
+          const formData = new FormData();
+          formData.append('image', product.image); // Certifique-se de que `product.image` seja um `File` válido
+  
+          // Fazer upload da imagem
+          this.productService.uploadImage(formData).subscribe({
+            next: (uploadResponse) => {
+              console.log('Imagem enviada com sucesso:', uploadResponse);
+              // Navegar após concluir todo o processo
+              this.router.navigate(['/login']);
+            },
+            error: (uploadError) => {
+              console.error('Erro ao fazer upload da imagem:', uploadError);
+            },
+          });
+        },
+        error: (error) => {
+          console.error('Erro ao criar o produto:', error);
+        },
+      });
+    } catch (error) {
+      console.error('Erro inesperado:', error);
+    }
   }
 }
-

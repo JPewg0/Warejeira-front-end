@@ -1,1 +1,34 @@
-<p>product works!</p>
+<main class="d-flex justify-content-center align-items-center vh-100">
+    <div class="product" *ngIf="product">
+        <div class="name-product">
+            <h1>{{ product.name }}</h1>
+        </div>
+        <div class="image-product">
+            <img 
+            src="{{ baseApiUrl }}/batch-bucket/{{ product.image }}"
+            alt="{{ product.name }}"
+            />
+        </div>
+        <div class="price-product">
+            <p>Preço:</p>
+            <p>R${{ product.price }}</p>
+            <div class="cont">
+                <label for="num-cont">Quantidade</label>
+                <div class="input-group">
+                    <i class="bx bx-minus" (click)="decreaseQuantity()"></i>
+                    <input 
+                        type="text" 
+                        class="num-cont" 
+                        id="num-cont" 
+                        [value]="quantity" 
+                        readonly
+                    />
+                    <i class="bx bx-plus" (click)="increaseQuantity()"></i>
+                </div>
+                <p>{{ product.stock_quantity }} peças disponíveis</p>
+            </div>
+            <button class="adicionar">Adicionar ao carrinho</button>
+            <button class="comprar">Comprar agora</button>
+        </div>
+    </div>
+</main>

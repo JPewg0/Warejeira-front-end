@@ -1,0 +1,5 @@
+<main class="d-flex justify-content-center align-items-center vh-100">
+    <div *ngIf="user">
+        <app-user-form (onSubmit)="editHandler($event)" [userData]="user" [btnText]="btnText"></app-user-form>
+    </div>      
+</main>

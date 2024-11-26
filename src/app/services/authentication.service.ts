@@ -1,9 +1,8 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Observable, of } from 'rxjs';
+import { BehaviorSubject, Observable, of } from 'rxjs';
 import { catchError, map } from 'rxjs/operators';
 import { environment } from '../../environments/environment';
-import { LoginData } from '../Login';
 
 @Injectable({
   providedIn: 'root'
@@ -12,6 +11,10 @@ export class AuthService {
   private baseApiUrl = environment.baseApiUrl; // Ex: 'http://localhost:4000/api'
   private apiUrl = `${this.baseApiUrl}/login`; // URL para o login
   private logoutUrl = `${this.baseApiUrl}/logout`; // URL para o logout
+
+  private authState = new BehaviorSubject<boolean>(this.isAuthenticated());
+
+  isAuthenticated$ = this.authState.asObservable(); // Observable para o estad
 
   constructor(private http: HttpClient) {}
 
@@ -29,15 +32,18 @@ export class AuthService {
           // Armazenar o token e o ID no localStorage
           localStorage.setItem('authToken', response.data.token);
           localStorage.setItem('userId', response.data.id);
-          
+
+          this.authState.next(true); // Atualiza o estado para logado
           return true; // Login bem-sucedido
         } else {
           console.error('Falha na autenticação: Dados incompletos', response);
+          this.authState.next(false); // Atualiza o estado para deslogado
           return false; // Login falhou
         }
       }),
       catchError(error => {
         console.error('Erro ao autenticar usuário:', error);
+        this.authState.next(false); // Atualiza o estado para deslogado
         return of(false); // Retorna falso em caso de erro na requisição
       })
     );
@@ -56,6 +62,7 @@ export class AuthService {
         // Remove o token e o ID do localStorage
         localStorage.removeItem('authToken');
         localStorage.removeItem('userId');
+        this.authState.next(false); // Atualiza o estado para deslogado
       }),
       catchError(error => {
         console.error('Erro ao realizar logout:', error);

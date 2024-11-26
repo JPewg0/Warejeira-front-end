@@ -7,6 +7,8 @@ import { Product } from '../../../Product';
 import { environment } from '../../../../environments/environment';
 import { ProductService } from '../../../services/product.service';
 
+import { SearchService } from '../../../services/search.service';
+
 @Component({
   selector: 'app-home',
   standalone: true,
@@ -22,7 +24,10 @@ export class HomeComponent {
 
   //todo search
 
-  constructor(private productService: ProductService){ }
+  constructor(
+    private productService: ProductService,
+    private searchService: SearchService
+  ){ }
 
   ngOnInit(): void{
     this.productService.getProducts().subscribe((items) => {
@@ -33,6 +38,12 @@ export class HomeComponent {
       this.allProducts = data
       this.products = data
     });
-  }
 
+    // Atualiza os produtos quando o valor da busca muda
+    this.searchService.search$.subscribe((value) => {
+      this.products = this.allProducts.filter(product =>
+        product.name.toLowerCase().includes(value)
+      );
+    });
+  }
 }

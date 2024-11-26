@@ -24,33 +24,35 @@ export class CompanyFormComponent {
 
   ngOnInit(): void{
     this.userForm = new FormGroup({
-      id: new FormControl(''),
       name: new FormControl('', [Validators.required]),
       cnpj: new FormControl('', [Validators.required]),
       email: new FormControl('', [Validators.required]),
-      phone: new FormControl('', [Validators.required]),
-      street: new FormControl('', [Validators.required]),
+      phone_number: new FormControl('', [Validators.required]),
+      address: new FormControl('', [Validators.required]),
       number: new FormControl('', [Validators.required]),
       cep: new FormControl('', [Validators.required]),
       city: new FormControl('', [Validators.required]),
-      state: new FormControl('', [Validators.required]),
+      uf: new FormControl('', [Validators.required]),
+      district: new FormControl('', [Validators.required]),
+      complement: new FormControl('', [Validators.required]),
     })
   }
 
+  
   get name(){
     return this.userForm.get('name')!;
   }
 
   get cnpj(){
-    return this.userForm.get('cpf')!;
+    return this.userForm.get('cnpj')!;
   }
 
   get email(){
     return this.userForm.get('email')!;
   }
   
-  get phone(){
-    return this.userForm.get('phone')!;
+  get phone_number(){
+    return this.userForm.get('phone_number')!;
   }
 
   get street(){
@@ -71,6 +73,14 @@ export class CompanyFormComponent {
 
   get state(){
     return this.userForm.get('state')!;
+  }
+
+  get complement(){
+    return this.userForm.get('complement')!;
+  }
+
+  get district(){
+    return this.userForm.get('district')!;
   }
 
     submit(){

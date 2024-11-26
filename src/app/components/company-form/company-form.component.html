@@ -33,7 +33,7 @@
             </div>
         </div>
         <div class="form-floating w-50 ps-2">
-            <input type="text" class="form-control" id="floatingTelefone" placeholder="(11)11111-1111" formControlName="phone">
+            <input type="text" class="form-control" id="floatingTelefone" placeholder="(11)11111-1111" formControlName="phone_number">
             <label for="floatingTelefone">Telefone</label>
             <!-- Mensagem de erro abaixo do campo Nome -->
             <div class="validation-error" *ngIf="userForm.controls['phone'].invalid && formDir.submitted">
@@ -44,11 +44,11 @@
 
     <!-- Rua, Número e CEP -->
     <div class="d-flex justify-content-between mb-3">
-        <div class="form-floating w-50 pe-2">
-            <input type="text" class="form-control" id="floatingRua" placeholder="suarua" formControlName="street">
+        <div class="form-floating w-75 pe-2">
+            <input type="text" class="form-control" id="floatingRua" placeholder="suarua" formControlName="address">
             <label for="floatingRua">Rua</label>
             <!-- Mensagem de erro abaixo do campo CPF -->
-            <div class="validation-error" *ngIf="userForm.controls['street'].invalid && formDir.submitted">
+            <div class="validation-error" *ngIf="userForm.controls['address'].invalid && formDir.submitted">
                 <p>Este campo é obrigatório!</p>
             </div>
         </div>
@@ -57,6 +57,30 @@
             <label for="floatingNumero">Número</label>
             <!-- Mensagem de erro abaixo do campo CPF -->
             <div class="validation-error" *ngIf="userForm.controls['number'].invalid && formDir.submitted">
+                <p>Este campo é obrigatório!</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Complemento -->
+    <div class="d-flex justify-content-between mb-3">
+        <div class="form-floating w-100 pe-2">
+            <input type="text" class="form-control" id="floatingComplemento" placeholder="complemento" formControlName="complement">
+            <label for="floatingComplemento">Complemento</label>
+            <!-- Mensagem de erro abaixo do campo CPF -->
+            <div class="validation-error" *ngIf="userForm.controls['complement'].invalid && formDir.submitted">
+                <p>Este campo é obrigatório!</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- cep e bairro -->
+    <div class="d-flex justify-content-between mb-3">
+        <div class="form-floating w-75 pe-2">
+            <input type="text" class="form-control" id="floatingBairro" placeholder="seubairro" formControlName="district">
+            <label for="floatingBairro">Bairro</label>
+            <!-- Mensagem de erro abaixo do campo CPF -->
+            <div class="validation-error" *ngIf="userForm.controls['district'].invalid && formDir.submitted">
                 <p>Este campo é obrigatório!</p>
             </div>
         </div>
@@ -80,11 +104,11 @@
                 <p>Este campo é obrigatório!</p>
             </div>
         </div>
-        <div class="form-floating w-50 ps-2">
-            <input type="text" class="form-control" id="floatingEstado" placeholder="text" formControlName="state">
+        <div class="form-floating w-25 ps-2">
+            <input type="text" class="form-control" id="floatingEstado" placeholder="text" formControlName="uf">
             <label for="floatingEstado">Estado</label>
             <!-- Mensagem de erro abaixo do campo Nome -->
-            <div class="validation-error" *ngIf="userForm.controls['state'].invalid && formDir.submitted">
+            <div class="validation-error" *ngIf="userForm.controls['uf'].invalid && formDir.submitted">
                 <p>Este campo é obrigatório!</p>
             </div>
         </div>

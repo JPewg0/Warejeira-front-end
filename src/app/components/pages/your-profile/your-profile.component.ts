@@ -29,7 +29,7 @@ export class YourProfileComponent {
     } else {
       console.warn('User ID não encontrado no localStorage');
     }
-  }
+}
 
   // Método para chamar o logout e redirecionar para a página de login
   onLogout(): void {
@@ -48,7 +48,7 @@ export class YourProfileComponent {
             console.log('Conta excluída com sucesso');
             // Após excluir, desloga o usuário e redireciona para a página de login
             this.authService.logout().subscribe(() => {
-              this.router.navigate(['/login']);
+              this.router.navigate(['/login']); // Redireciona para o login
             });
           },
           (error) => {

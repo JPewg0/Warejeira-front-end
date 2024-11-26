@@ -1,8 +1,9 @@
-import { Component, EventEmitter, Input, input, Output, output } from '@angular/core';
+import { Component, EventEmitter, Input, input, Output, output, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ReactiveFormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { Product } from '../../Product';
+import { ProductService } from '../../services/product.service';
 
 @Component({
   selector: 'app-product-form',
@@ -11,46 +12,41 @@ import { Product } from '../../Product';
   templateUrl: './product-form.component.html',
   styleUrl: './product-form.component.css'
 })
-export class ProductFormComponent {
+export class ProductFormComponent implements OnInit {
   @Output() onSubmit = new EventEmitter<Product>();
   @Input() btnText!: string;
 
   productForm!: FormGroup;
-  selectedImage: string | ArrayBuffer | null = null; // Variável para armazenar a imagem selecionada
+  selectedImage: string | ArrayBuffer | null = null;
+  categorias: any[] = [];
 
-  constructor(){}
+  constructor(private productService: ProductService) {} // Injeção do serviço
 
-  ngOnInit(): void{
+  ngOnInit(): void {
+    
     this.productForm = new FormGroup({
-      id: new FormControl(''),
       name: new FormControl('', [Validators.required]),
       category: new FormControl('', [Validators.required]),
       price: new FormControl('', [Validators.required]),
-      stock: new FormControl('', [Validators.required]),
+      stock_quantity: new FormControl('', [Validators.required]),
       description: new FormControl('', [Validators.required]),
       image: new FormControl(''),
     });
+
+    this.loadCategories();
   }
 
-  // Getters para facilitar o acesso aos controles do formulário
-  get name(){
-    return this.productForm.get('name')!;
-  }
-
-  get category(){
-    return this.productForm.get('category')!;
-  }
-
-  get price(){
-    return this.productForm.get('price')!;
-  }
-  
-  get stock(){
-    return this.productForm.get('stock')!;
-  }
-
-  get description(){
-    return this.productForm.get('description')!;
+  // Carregar categorias usando o serviço
+  loadCategories(): void {
+    this.productService.getCategories().subscribe(
+      (data) => {
+        console.log('Categorias recebidas:', data); // Verifique o console para ver as categorias
+        this.categorias = data.categories; // Popula o array com as categorias da API
+      },
+      (error) => {
+        console.error('Erro ao carregar categorias:', error);
+      }
+    );
   }
 
   // Manipulação do arquivo de imagem
@@ -60,7 +56,7 @@ export class ProductFormComponent {
       const reader = new FileReader();
       reader.onload = () => {
         this.selectedImage = reader.result; // Atualiza a imagem visualizada
-        this.productForm.patchValue({image: file}); // Atualiza o valor do formulário
+        this.productForm.patchValue({ image: file }); // Atualiza o valor do formulário
       };
       reader.readAsDataURL(file); // Lê a imagem e converte para URL
     }

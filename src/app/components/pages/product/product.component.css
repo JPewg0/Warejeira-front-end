@@ -1,0 +1,122 @@
+body {
+    margin: 0;
+    padding: 0;
+    background-color: #f9f9f9;
+    color: #333;
+}
+
+main {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    padding: 20px;
+}
+
+.product {
+    background: #fff;
+    border-radius: 8px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    max-width: 400px;
+    width: 100%;
+    text-align: center;
+}
+
+.name-product h1 {
+    font-size: large;
+    font-size: 24px;
+    color: #222;
+    margin-bottom: 10px;
+}
+
+.image-product img {
+    max-width: 100%;
+    border-radius: 8px;
+    margin-bottom: 20px;
+}
+
+.price-product p {
+    margin: 10px 0;
+    font-size: 18px;
+    font-weight: bold;
+    color: #444;
+}
+
+.cont {
+    margin: 15px 0;
+    text-align: left;
+}
+
+.cont label {
+    display: block;
+    font-size: 14px;
+    margin-bottom: 5px;
+    color: #555;
+}
+
+.input-group {
+    display: flex;
+    align-items: center;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    overflow: hidden;
+}
+
+.input-group i {
+    background-color: #f0f0f0;
+    padding: 10px;
+    font-size: 18px;
+    cursor: pointer;
+    transition: background 0.3s;
+}
+
+.input-group i:hover {
+    background-color: #ddd;
+}
+
+.num-cont {
+    border: none;
+    width: 50px;
+    text-align: center;
+    font-size: 16px;
+    outline: none;
+}
+
+.adicionar,
+.comprar {
+    display: block;
+    width: 100%;
+    margin: 10px 0;
+    padding: 12px 0;
+    font-size: 16px;
+    font-weight: bold;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background 0.3s;
+}
+
+.adicionar {
+    background-color: #28a745;
+}
+
+.adicionar:hover {
+    background-color: #218838;
+}
+
+.comprar {
+    background-color: #007bff;
+}
+
+.comprar:hover {
+    background-color: #0056b3;
+}
+
+.cont p {
+    font-size: 14px;
+    color: #666;
+    margin-top: 5px;
+    font-style: italic;
+}
