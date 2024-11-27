@@ -20,17 +20,18 @@ export class ProductFormComponent implements OnInit {
   selectedImage: string | ArrayBuffer | null = null;
   categorias: any[] = [];
 
-  constructor(private productService: ProductService) {} // Injeção do serviço
+  constructor(private productService: ProductService) { } // Injeção do serviço
 
   ngOnInit(): void {
-    
+
     this.productForm = new FormGroup({
       name: new FormControl('', [Validators.required]),
       category: new FormControl('', [Validators.required]),
       price: new FormControl('', [Validators.required]),
       stock_quantity: new FormControl('', [Validators.required]),
-      description: new FormControl('', [Validators.required]),
+      description: new FormControl(''),
       image: new FormControl(''),
+      product_id: new FormControl('')
     });
 
     this.loadCategories();
@@ -41,7 +42,8 @@ export class ProductFormComponent implements OnInit {
     this.productService.getCategories().subscribe(
       (data) => {
         console.log('Categorias recebidas:', data); // Verifique o console para ver as categorias
-        this.categorias = data.categories; // Popula o array com as categorias da API
+        this.categorias = data.data;
+        console.log("categorias populadas: ", this.categorias) // Popula o array com as categorias da API
       },
       (error) => {
         console.error('Erro ao carregar categorias:', error);

@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
-import { HttpClient,HttpHeaders } from '@angular/common/http';
+import { Observable, throwError } from 'rxjs';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 
 import { Product } from '../Product';
 import { Response } from '../Response';
@@ -12,10 +12,11 @@ import { environment } from '../../environments/environment';
 })
 export class ProductService {
   private baseApiUrl = environment.baseApiUrl;
+  private uploadUrl = `${this.baseApiUrl}/upload`;
   private apiUrl = `${this.baseApiUrl}/products`;
   private categoriesUrl = `${this.baseApiUrl}/categories`; // URL para categorias
 
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient) { }
 
   // Método para buscar todos os produtos
   getProducts(): Observable<Response<Product[]>> {
@@ -30,13 +31,27 @@ export class ProductService {
 
   // Método para criar um produto
   createProduct(formData: any): Observable<any> {
-    return this.http.post<any>(this.apiUrl, formData);
+    const token = localStorage.getItem('authToken'); // Obtém o token do localStorage
+
+    if (!token) {
+      return throwError('Token não encontrado. O usuário não está autenticado.');
+    }
+
+    const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
+
+    return this.http.post<any>(this.apiUrl, formData, { headers });
   }
 
   // Método para upload de imagem
   uploadImage(formData: FormData): Observable<any> {
-    const headers = new HttpHeaders(); // Não defina o `Content-Type` manualmente.
-    return this.http.post<any>(`${this.apiUrl}/upload-image`, formData, { headers });
+    const token = localStorage.getItem('authToken'); // Obtém o token do localStorage
+
+    if (!token) {
+      return throwError('Token não encontrado. O usuário não está autenticado.');
+    }
+
+    const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
+    return this.http.post<any>(`${this.uploadUrl}`, formData, { headers });
   }
 
   // Método para buscar categorias

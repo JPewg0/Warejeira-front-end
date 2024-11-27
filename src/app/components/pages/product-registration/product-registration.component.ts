@@ -16,10 +16,10 @@ export class ProductRegistrationComponent {
   btnText = "Cadastrar Produto";
 
   constructor(
-    private productService: ProductService, 
+    private productService: ProductService,
     private messageService: MessagesService,
     private router: Router
-  ){}
+  ) { }
 
   async createHandler(product: Product) {
     const productData = {
@@ -27,22 +27,24 @@ export class ProductRegistrationComponent {
       category: product.category,
       stock_quantity: product.stock_quantity,
       price: product.price,
+      description: product.description,
+      product_id: product.id
     };
-  
+
     const phoenixFormattedData = {
       product: productData, // Mantém a estrutura esperada pelo backend
     };
-  
+
     try {
       // Criar produto
       this.productService.createProduct(phoenixFormattedData).subscribe({
         next: (response) => {
           console.log('Produto criado com sucesso:', response);
-  
+
           // Preparar `FormData` para o upload da imagem
           const formData = new FormData();
           formData.append('image', product.image); // Certifique-se de que `product.image` seja um `File` válido
-  
+          formData.append('product_id', response.id)
           // Fazer upload da imagem
           this.productService.uploadImage(formData).subscribe({
             next: (uploadResponse) => {
