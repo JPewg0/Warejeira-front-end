@@ -16,12 +16,11 @@
         <p><a class="link-alterar"  routerLink="user/edit/{{ userData?.id }}">Alterar informações</a></p>
       </div>
     </div>
-    <a class="link-alterar" [routerLink]="['/profile-data', userData?.profileId, 'user', 'edit', userData?.id]">
-      Alterar informações
+    <a class="link-alterar" routerLink="/your-profile">
+      Voltar ao perfil
     </a>    
   </main>
   
   <ng-template #loading>
     <p>Carregando dados...</p>
   </ng-template>
-  

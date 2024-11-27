@@ -131,6 +131,9 @@
             <div class="validation-error" *ngIf="userForm.controls['password'].invalid && formDir.submitted">
                 <p>Este campo é obrigatório!</p>
             </div>
+            <div class="validation-error" *ngIf="userForm.get('password')?.errors?.['minlength']">
+                <p>A senha deve ter no mínimo 6 caracteres.</p>
+            </div>
         </div>
         <div class="form-floating w-40 pe-2">
             <input type="password" class="form-control" id="floatingConfirmarSenha" placeholder="passwordconfirmation" formControlName="password_confirmation">
@@ -138,6 +141,9 @@
             <!-- Mensagem de erro abaixo do campo Confirmar Senha -->
             <div class="validation-error" *ngIf="userForm.controls['password_confirmation'].invalid && formDir.submitted">
                 <p>Este campo é obrigatório!</p>
+            </div>
+            <div class="validation-error" *ngIf="userForm.get('password_confirmation')?.errors?.['minlength']">
+                <p>A senha deve ter no mínimo 6 caracteres.</p>
             </div>
         </div>
     </div>

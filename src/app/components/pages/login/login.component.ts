@@ -6,7 +6,6 @@ import { MessagesService } from '../../../services/messages.service';
 import { RouterLink } from '@angular/router';
 import { AuthService } from '../../../services/authentication.service';
 import { Router } from '@angular/router';
-import { LoginData } from '../../../Login';
 
 @Component({
   selector: 'app-login',
@@ -29,7 +28,7 @@ export class LoginComponent {
     // Inicializa o formulário com validações
     this.loginForm = this.fb.group({
       email: ['', [Validators.required, Validators.email]], // Validação de email
-      password: ['', [Validators.required, Validators.minLength(6)]] // Validação de senha
+      password: ['', [Validators.required]] // Validação de senha
     });
   }
 

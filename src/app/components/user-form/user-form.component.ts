@@ -32,8 +32,8 @@ export class UserFormComponent {
       cpf: new FormControl(this.userData ? this.userData.cpf : '', [Validators.required]),
       email: new FormControl(this.userData ? this.userData.email : '', [Validators.required]),
       phone_number: new FormControl(this.userData ? this.userData.phone_number : '', [Validators.required]),
-      password: new FormControl(this.userData ? this.userData.password : '', [Validators.required]),
-      password_confirmation: new FormControl(this.userData ? this.userData.password_confirmation : '', [Validators.required]),
+      password: new FormControl(this.userData ? this.userData.password : '', [Validators.required, Validators.minLength(6)]),
+      password_confirmation: new FormControl(this.userData ? this.userData.password_confirmation : '', [Validators.required, Validators.minLength(6)]),
       birth_date: new FormControl(this.userData ? this.userData.birth_date : '', [Validators.required]),
   
       // Campos de endereço
