@@ -43,6 +43,7 @@ export const routes: Routes = [
     { path: 'update-user-information', component: UpdateUserInformationComponent },
     { path: 'your-company', component: YourCompanyComponent },
     { path: 'your-orders', component: YourOrdersComponent },
+  {path: 'payment2', component: Payment2Component },
 ];
 
 @NgModule({
