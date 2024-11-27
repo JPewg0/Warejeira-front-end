@@ -20,6 +20,7 @@ import { UpdateUserInformationComponent } from './components/pages/update-user-i
 import { YourCompanyComponent } from './components/pages/your-company/your-company.component';
 import { YourOrdersComponent } from './components/pages/your-orders/your-orders.component';
 import { UserEditComponent } from './components/pages/user-edit/user-edit.component';
+import { Payment2Component } from './components/pages/payment2/payment2.component';
 
 export const routes: Routes = [
     { path: '', component: HomeComponent },
@@ -43,6 +44,7 @@ export const routes: Routes = [
     { path: 'update-user-information', component: UpdateUserInformationComponent },
     { path: 'your-company', component: YourCompanyComponent },
     { path: 'your-orders', component: YourOrdersComponent },
+    {path: 'payment2', component: Payment2Component},
 ];
 
 @NgModule({
