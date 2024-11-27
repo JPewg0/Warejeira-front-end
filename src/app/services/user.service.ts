@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Observable, throwError } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
-import { HttpHeaders } from '@angular/common/http'; 
+import { HttpHeaders } from '@angular/common/http';
 
 import { catchError } from 'rxjs';
 
@@ -14,7 +14,7 @@ export class UserService {
   private baseApiUrl = environment.baseApiUrl;
   private apiUrl = `${this.baseApiUrl}/users`;
 
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient) { }
 
   // Método para criar o usuário
   createUser(formData: any): Observable<any> {
@@ -61,13 +61,13 @@ export class UserService {
 
   updateUser(id: any, formData: any): Observable<FormData> {
     const token = localStorage.getItem('authToken'); // Obtém o token do localStorage
-  
+
     if (!token) {
       return throwError('Token não encontrado. O usuário não está autenticado.');
     }
-  
+
     const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
-  
+
     // Faz a requisição PUT com o corpo formData e o cabeçalho de autorização
     return this.http.put<FormData>(`${this.apiUrl}/${id}`, formData, { headers }).pipe(
       catchError((error) => {

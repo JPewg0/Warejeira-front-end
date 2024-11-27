@@ -13,7 +13,7 @@ import { RouterLink } from '@angular/router';
 @Component({
   selector: 'app-product',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, RouterLink],
   templateUrl: './product.component.html',
   styleUrl: './product.component.css'
 })
@@ -25,14 +25,14 @@ export class ProductComponent {
   constructor(
     private productServise: ProductService,
     private route: ActivatedRoute
-  ){}
+  ) { }
 
   ngOnInit(): void {
     const id = Number(this.route.snapshot.paramMap.get('id'));
 
     this.productServise
-    .getProduct(id)
-    .subscribe((item) => (this.product = item.data));
+      .getProduct(id)
+      .subscribe((item) => (this.product = item.data));
   }
 
   // Método para aumentar a quantidade
@@ -48,7 +48,7 @@ export class ProductComponent {
       alert('Quantidade máxima atingida!');
     }
   }
-  
+
   decreaseQuantity(): void {
     if (this.quantity > 1) {
       this.quantity--;
