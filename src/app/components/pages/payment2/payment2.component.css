@@ -8,17 +8,23 @@ body {
     background-color: #f9f9f9;
   }
   
+  div {
+    padding: 10px;
+  }
   
   h1 {
     margin-bottom: 20px;
   }
   
-  .address-field input {
-    width: 100%; /* Define a largura do campo de entrada para ocupar todo o espaço do contêiner pai */
-    padding: 10px; /* Adiciona um preenchimento interno de 10 pixels ao redor do texto do campo */
-    border: 1px solid #000000; /* Adiciona uma borda preta de 1 pixel ao campo de entrada */
-    border-radius: 5px; /* Arredonda os cantos do campo de entrada com um raio de 5 pixels */
-  }
+  .radio-border{
+        border: 2px solid #000; /* Cor e espessura da borda */
+        padding: 10px; /* Espaçamento interno */
+        width: 100%; /* Largura da área */
+        border-radius: 8px; /* Borda arredondada (opcional) */
+        background-color: #f9f9f9; /* Cor de fundo (opcional) */
+        margin-bottom: 10px;
+    }
+
   
   .new-address {
     color: #888;
