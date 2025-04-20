@@ -40,16 +40,19 @@ export class ProductRegistrationComponent {
       this.productService.createProduct(phoenixFormattedData).subscribe({
         next: (response) => {
           console.log('Produto criado com sucesso:', response);
+          console.log('objeto: ', response.data)
+          console.log('id do objeto: ', response.data.id)
 
           // Preparar `FormData` para o upload da imagem
           const formData = new FormData();
           formData.append('image', product.image); // Certifique-se de que `product.image` seja um `File` válido
-          formData.append('product_id', response.id)
+          formData.append('product_id', response.data.id)
           // Fazer upload da imagem
           this.productService.uploadImage(formData).subscribe({
             next: (uploadResponse) => {
               console.log('Imagem enviada com sucesso:', uploadResponse);
               // Navegar após concluir todo o processo
+              console.log('Imagem compilaaaaa:', uploadResponse);
               this.router.navigate(['/login']);
             },
             error: (uploadError) => {
