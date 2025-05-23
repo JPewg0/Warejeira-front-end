@@ -39,7 +39,8 @@ export class HeaderComponent implements OnInit, OnDestroy {
   constructor(
     private productService: ProductService,
     private authService: AuthService,  // Injeção do AuthService
-    private searchService: SearchService
+    private searchService: SearchService,
+    private router: Router
   ) {}
 
   ngOnInit(): void {
@@ -66,11 +67,13 @@ export class HeaderComponent implements OnInit, OnDestroy {
   search(e: Event): void {
     const target = e.target as HTMLInputElement;
     const value = target.value;
-
+  
+    this.searchTerm = value;
+  
+    // Atualiza o serviço com o termo
     this.searchService.updateSearch(value);
-    // Descomente o código abaixo se quiser aplicar o filtro manualmente
-    // this.products = this.allProducts.filter(product => {
-    //   return product.name.toLowerCase().includes(value.toLowerCase());
-    // });
-  }
+  
+    // Redireciona para /home com o termo como query param
+    this.router.navigate(['/home'], { queryParams: { q: value } });
+  }  
 }
