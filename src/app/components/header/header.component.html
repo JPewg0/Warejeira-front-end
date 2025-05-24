@@ -1,3 +1,4 @@
+ <!--
 <div class="container" id="nav-container">
     <nav class="navbar navbar-expand-lg fixed-top">
         <a href="/" class="navbar-brand">
@@ -29,3 +30,31 @@
         </div>
     </nav>
 </div>
+-->
+<div id="container">
+    <div id="logo" routerLink="/">
+        <img id="logo-img" src="assets/images/logo_atual2.png" alt="perfil">
+    </div>
+    <div id="navbar">
+        <form role="search">
+            <input type="text" placeholder="Pesquisar Produto" aria-label="Search">
+        </form>
+    </div>
+    <div id="links">
+        <div class="link" routerLink="/shopping-cart">Carrinho</div>
+        <div>|</div>
+        <div *ngIf="!isAuthenticated" routerLink="/login">
+            <button class="btn btn-white btn-animated">
+                <img id="login" src="assets/images/login.png" alt="perfil">
+            </button>
+        </div>
+        <div class="button" *ngIf="isAuthenticated" routerLink="/your-profile">
+            <button class="btn btn-white btn-animated">
+                <img id="login" src="assets/images/perfil.png" alt="perfil">
+            </button>
+        </div>
+        <div *ngIf="isAuthenticated">|</div>
+        <div class="button" *ngIf="isAuthenticated" (click)="onLogout()">sair</div>
+    </div>
+</div>
+

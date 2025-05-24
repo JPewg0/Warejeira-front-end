@@ -55,7 +55,7 @@ export class UserEditComponent {
       password: userData.password,  // Isso pode ser opcional dependendo da lógica de atualização
       password_confirmation: userData.password_confirmation,  // Caso queira permitir a alteração da senha
       address: {
-        address: userData.address,  // Endereço do usuário
+        address: userData.addresses,  // Endereço do usuário
         cep: userData.cep,
         city: userData.city,
         complement: userData.complement,

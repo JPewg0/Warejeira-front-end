@@ -37,13 +37,13 @@ export class UserFormComponent {
       birth_date: new FormControl(this.userData ? this.userData.birth_date : '', [Validators.required]),
   
       // Campos de endereço
-      address: new FormControl(this.userData?.address?.address || '', [Validators.required]),
-      cep: new FormControl(this.userData?.address?.cep || '', [Validators.required]),
-      city: new FormControl(this.userData?.address?.city || '', [Validators.required]),
-      uf: new FormControl(this.userData?.address?.uf || '', [Validators.required]),
-      district: new FormControl(this.userData?.address?.district || '', [Validators.required]),
-      complement: new FormControl(this.userData?.address?.complement || '', [Validators.required]),
-      home_number: new FormControl(this.userData?.address?.home_number?.trim() || '', [Validators.required]),
+      addresses: new FormControl(this.userData?.addresses?.addresses || '', [Validators.required]),
+      cep: new FormControl(this.userData?.addresses?.cep || '', [Validators.required]),
+      city: new FormControl(this.userData?.addresses?.city || '', [Validators.required]),
+      uf: new FormControl(this.userData?.addresses?.uf || '', [Validators.required]),
+      district: new FormControl(this.userData?.addresses?.district || '', [Validators.required]),
+      complement: new FormControl(this.userData?.addresses?.complement || '', [Validators.required]),
+      home_number: new FormControl(this.userData?.addresses?.home_number?.trim() || '', [Validators.required]),
     });
     
     // Verificação dos dados após inicializar o formulário
@@ -80,8 +80,8 @@ export class UserFormComponent {
     return this.userForm.get('birth_date')!;
   }
 
-  get address() {
-    return this.userForm.get('address')!;
+  get addresses() {
+    return this.userForm.get('addresses')!;
   }
 
   get cep() {

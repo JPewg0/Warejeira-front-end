@@ -76,4 +76,11 @@ export class HeaderComponent implements OnInit, OnDestroy {
     // Redireciona para /home com o termo como query param
     this.router.navigate(['/home'], { queryParams: { q: value } });
   }  
+
+  // Método para chamar o logout e redirecionar para a página de login
+  onLogout(): void {
+    this.authService.logout().subscribe(() => {
+      // Após o logout, redireciona para a página de login
+    });
+  }
 }

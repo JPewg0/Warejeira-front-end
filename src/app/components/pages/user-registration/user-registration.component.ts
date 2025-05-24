@@ -34,7 +34,7 @@ export class UserRegistrationComponent {
       password: user.password,
       password_confirmation: user.password_confirmation,
       address:[ {
-        address: user.address,
+        address: user.addresses,
         cep: user.cep,
         city: user.city,
         complement: user.complement,

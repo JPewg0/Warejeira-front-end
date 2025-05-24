@@ -4,17 +4,12 @@
 }
 
 body{
-    font-family: 'Poppins', sans-serif;
+    font-family: Arial, Helvetica, sans-serif;
+    margin: 0px;
 }
 
 .row{
     margin: 0;
-}
-
-.container {
-  padding: 70px 15px; 
-  max-width: 1200px; 
-  margin: 0 auto; 
 }
 
 
@@ -23,11 +18,6 @@ p, li{
 }
 h1{
     color: #003366;
-    padding-bottom: 20px;
-}
-
-div{
-    padding-bottom: 5px;
 }
 
 a {
@@ -38,44 +28,6 @@ a {
     display: inline;
 }
 
-html, body {
-    margin: 0;
-    padding: 0;
-    height: 100%;
-  }
   
-  #nav-container {
-    position: relative;
-    z-index: 1000; /* Garante que o cabeçalho ficará acima do conteúdo */
-  }
-  
-  nav.navbar {
-    position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
-    z-index: 9999; /* Mantém o cabeçalho fixo no topo */
-    background-color: #fff; /* Cor do fundo do cabeçalho */
-    box-shadow: 0 2px 5px rgba(0,0,0,0.1); /* Sombra para o cabeçalho */
-  }
-  
-  main {
-    padding-top: 80px; /* Distância do topo para o conteúdo começar abaixo do cabeçalho */
-    min-height: calc(100vh - 80px); /* A altura do conteúdo será a altura da tela menos a altura do cabeçalho */
-    overflow-y: auto; /* Permite o conteúdo rolar */
-  }
-  
-  #logo {
-    #logo {
-        max-height: 50px; /* Definindo uma altura máxima para o logo */
-        width: auto; /* Mantém a proporção da imagem */
-      }
-      
-  }
-  
-  #navbar-links {
-    display: flex;
-    justify-content: space-between;
-  }
   
   
