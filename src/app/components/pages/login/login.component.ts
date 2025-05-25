@@ -39,7 +39,7 @@ export class LoginComponent {
 
   // Método de envio do formulário
   onSubmit() {
-    if (this.loginForm.valid) {
+
       const { email, password } = this.loginForm.value; // Extrai os valores do formulário
 
       // Chama o serviço de autenticação
@@ -47,15 +47,14 @@ export class LoginComponent {
         if (isAuthenticated) {
           // Se a autenticação for bem-sucedida, exibe a mensagem e navega para a página inicial
           this.messagesService.add('Login realizado com sucesso!');
+          console.log('E-mail ou senha inválidos.');
           this.router.navigate(['/']); // Redireciona para a página principal
         } else {
           // Se falhar, exibe a mensagem de erro
           this.messagesService.add('E-mail ou senha inválidos.');
+          console.log('E-mail ou senha inválidos.');
         }
       });
-    } else {
-      // Se o formulário for inválido, exibe uma mensagem de erro
-      this.messagesService.add('Preencha todos os campos corretamente.');
+    
     }
-  }
 }

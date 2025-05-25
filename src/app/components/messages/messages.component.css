@@ -11,7 +11,7 @@
     z-index: 9999;
     box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
     border-radius: 10px;
-    animation: fadeInDown 0.4s ease;
+    animation: fadeInDown 0.1s ease;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
@@ -31,7 +31,7 @@
 .clear-button {
     background: none;
     border: none;
-    padding: 0.5em;
+    padding: 0,5%;
     cursor: pointer;
     border-radius: 50%;
     transition: background-color 0.2s ease;

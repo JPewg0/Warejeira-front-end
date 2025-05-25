@@ -27,24 +27,24 @@ export class UserFormComponent {
     }
   
     // Inicializa o formulário com os dados de `userData` ou valores vazios
-    this.userForm = new FormGroup({
-      name: new FormControl(this.userData ? this.userData.name : '', [Validators.required]),
-      cpf: new FormControl(this.userData ? this.userData.cpf : '', [Validators.required]),
-      email: new FormControl(this.userData ? this.userData.email : '', [Validators.required]),
-      phone_number: new FormControl(this.userData ? this.userData.phone_number : '', [Validators.required]),
-      password: new FormControl(this.userData ? this.userData.password : '', [Validators.required, Validators.minLength(6)]),
-      password_confirmation: new FormControl(this.userData ? this.userData.password_confirmation : '', [Validators.required, Validators.minLength(6)]),
-      birth_date: new FormControl(this.userData ? this.userData.birth_date : '', [Validators.required]),
-  
-      // Campos de endereço
-      addresses: new FormControl(this.userData?.addresses?.addresses || '', [Validators.required]),
-      cep: new FormControl(this.userData?.addresses?.cep || '', [Validators.required]),
-      city: new FormControl(this.userData?.addresses?.city || '', [Validators.required]),
-      uf: new FormControl(this.userData?.addresses?.uf || '', [Validators.required]),
-      district: new FormControl(this.userData?.addresses?.district || '', [Validators.required]),
-      complement: new FormControl(this.userData?.addresses?.complement || '', [Validators.required]),
-      home_number: new FormControl(this.userData?.addresses?.home_number?.trim() || '', [Validators.required]),
-    });
+this.userForm = new FormGroup({
+  name: new FormControl(this.userData?.name || '', [Validators.required]),
+  cpf: new FormControl(this.userData?.cpf || '', [Validators.required]),
+  email: new FormControl(this.userData?.email || '', [Validators.required, Validators.email]),
+  phone_number: new FormControl(this.userData?.phone_number || '', [Validators.required]),
+  password: new FormControl(this.userData?.password || '', [Validators.minLength(6)]), // senha pode ser opcional no update
+  password_confirmation: new FormControl(this.userData?.password_confirmation || '', []),
+  birth_date: new FormControl(this.userData?.birth_date || '', [Validators.required]),
+
+  // Endereço
+  address: new FormControl(this.userData?.addresses?.[0]?.address || ''),
+  cep: new FormControl(this.userData?.addresses?.[0]?.cep || ''),
+  city: new FormControl(this.userData?.addresses?.[0]?.city || ''),
+  uf: new FormControl(this.userData?.addresses?.[0]?.uf || ''),
+  district: new FormControl(this.userData?.addresses?.[0]?.district || ''),
+  complement: new FormControl(this.userData?.addresses?.[0]?.complement || ''),
+  home_number: new FormControl(this.userData?.addresses?.[0]?.home_number?.trim() || ''),
+});
     
     // Verificação dos dados após inicializar o formulário
     console.log('Dados do usuário carregados:', this.userForm.value);
@@ -80,8 +80,8 @@ export class UserFormComponent {
     return this.userForm.get('birth_date')!;
   }
 
-  get addresses() {
-    return this.userForm.get('addresses')!;
+  get address() {
+    return this.userForm.get('address')!;
   }
 
   get cep() {

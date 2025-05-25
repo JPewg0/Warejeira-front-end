@@ -1,12 +1,9 @@
-import { Component } from '@angular/core';
-import { ActivatedRoute, Router} from '@angular/router';
-
+import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
 import { User } from '../../../User';
-
 import { UserService } from '../../../services/user.service';
-
 import { CommonModule } from '@angular/common';
-import { UserFormComponent } from "../../user-form/user-form.component";
+import { UserFormComponent } from '../../user-form/user-form.component';
 
 @Component({
   selector: 'app-user-edit',
@@ -15,10 +12,11 @@ import { UserFormComponent } from "../../user-form/user-form.component";
   templateUrl: './user-edit.component.html',
   styleUrl: './user-edit.component.css'
 })
-export class UserEditComponent {
+export class UserEditComponent implements OnInit {
+  userDataToUpdate!: User;
   user!: User;
   btnText: string = 'Editar';
-  userId!: string; // Definido para armazenar o ID do usuário vindo da URL
+  userId!: string;
 
   constructor(
     private userService: UserService,
@@ -27,65 +25,72 @@ export class UserEditComponent {
   ) {}
 
   ngOnInit(): void {
-    // Obtendo o id diretamente da URL
-    const profileId = this.route.snapshot.paramMap.get('profileId');
-    this.userId = this.route.snapshot.paramMap.get('userId') || ''; // Atribuindo o valor do parâmetro userId da URL
+    this.userId = this.route.snapshot.paramMap.get('userId') || '';
 
-    // Se o userId existir, busque os dados do usuário
+    console.log("ola")
+
     if (this.userId) {
-      this.userService.getUserData(this.userId).subscribe((item) => {
-        this.user = item.data;
+      this.userService.getUserData(this.userId).subscribe((response) => {
+        const userResponse = response.data;
+        const firstAddress = userResponse.addresses.data[0] || {
+          address: '',
+          cep: '',
+          city: '',
+          complement: '',
+          district: '',
+          home_number: '',
+          uf: ''
+        };
+
+        this.user = {
+          id: userResponse.id,
+          name: userResponse.name,
+          email: userResponse.email,
+          cpf: userResponse.cpf,
+          phone_number: userResponse.phone_number,
+          birth_date: userResponse.birth_date,
+          password: '',
+          password_confirmation: '',
+          addresses: [firstAddress]
+        };
       });
     }
   }
 
-  editHandler(userData: User) {
-    // Verificando se o userId foi obtido corretamente
-    if (!this.userId) {
-      console.error('ID do usuário não encontrado na URL');
-      return;
-    }
-
-    const userDataToUpdate = {
-      name: userData.name,
-      email: userData.email,
-      cpf: userData.cpf,
-      phone_number: userData.phone_number,
-      birth_date: userData.birth_date,
-      password: userData.password,  // Isso pode ser opcional dependendo da lógica de atualização
-      password_confirmation: userData.password_confirmation,  // Caso queira permitir a alteração da senha
-      address: {
-        address: userData.addresses,  // Endereço do usuário
-        cep: userData.cep,
-        city: userData.city,
-        complement: userData.complement,
-        district: userData.district,
-        home_number: userData.home_number,
-        uf: userData.uf
+  editHandler(formValue: any) {
+  const userData = {
+    name: formValue.name,
+    email: formValue.email,
+    cpf: formValue.cpf,
+    phone_number: formValue.phone_number,
+    birth_date: formValue.birth_date,
+    password: formValue.password,
+    password_confirmation: formValue.password_confirmation,
+    addresses: [
+      {
+        address: formValue.address,
+        cep: formValue.cep,
+        city: formValue.city,
+        complement: formValue.complement,
+        district: formValue.district,
+        home_number: formValue.home_number,
+        uf: formValue.uf
       }
+    ]
+  };
+
+    const phoenixFormattedData = {
+      user: userData  // Mantém a estrutura esperada pelo Phoenix
     };
 
-    const formData = new FormData();
-
-    // Preenche o FormData com os dados para envio na requisição
-    formData.append('name', userDataToUpdate.name);
-    formData.append('email', userDataToUpdate.email);
-    formData.append('cpf', userDataToUpdate.cpf);
-    formData.append('phone_number', userDataToUpdate.phone_number);
-    formData.append('birth_date', userDataToUpdate.birth_date);
-    formData.append('password', userDataToUpdate.password || '');  // Caso queira permitir a senha como opcional
-    formData.append('password_confirmation', userDataToUpdate.password_confirmation || '');
-    formData.append('address', JSON.stringify(userDataToUpdate.address));  // Serializando o objeto de endereço como JSON
-
-    // Agora, chame o método de atualização, passando o id e os dados formatados
-    this.userService.updateUser(this.userId, formData).subscribe(
+    this.userService.updateUser(this.userId, phoenixFormattedData).subscribe(
       (response) => {
         console.log('Usuário atualizado com sucesso!', response);
-        this.router.navigate(['/users']); // Navega para a lista de usuários após sucesso
+        this.router.navigate(['/users']);
       },
       (error) => {
         console.error('Erro ao atualizar o usuário:', error);
       }
     );
   }
-} 
+}

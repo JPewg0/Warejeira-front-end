@@ -24,25 +24,27 @@ export class UserRegistrationComponent {
     private router: Router
   ) { }
 
-  async createHandler(user: User) {
-    const userData = {
-      name: user.name,
-      email: user.email,
-      cpf: user.cpf,
-      phone_number: user.phone_number,
-      birth_date: user.birth_date,
-      password: user.password,
-      password_confirmation: user.password_confirmation,
-      address:[ {
-        address: user.addresses,
-        cep: user.cep,
-        city: user.city,
-        complement: user.complement,
-        district: user.district,
-        home_number: user.home_number,
-        uf: user.uf
-      }]
-    };
+async createHandler(formValue: any) {
+  const userData = {
+    name: formValue.name,
+    email: formValue.email,
+    cpf: formValue.cpf,
+    phone_number: formValue.phone_number,
+    birth_date: formValue.birth_date,
+    password: formValue.password,
+    password_confirmation: formValue.password_confirmation,
+    addresses: [
+      {
+        address: formValue.address,
+        cep: formValue.cep,
+        city: formValue.city,
+        complement: formValue.complement,
+        district: formValue.district,
+        home_number: formValue.home_number,
+        uf: formValue.uf
+      }
+    ]
+  };
 
     const phoenixFormattedData = {
       user: userData  // Mantém a estrutura esperada pelo Phoenix

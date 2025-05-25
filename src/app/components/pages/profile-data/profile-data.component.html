@@ -1,26 +1,26 @@
-<main *ngIf="userData; else loading" class="d-flex flex-column justify-content-center align-items-center vh-100">
-    <h1 class="mb-3 fw-bold text-center">Suas informações</h1>
-    <div class="container">
-      <div class="coluna">
-        <p><strong>Nome:</strong> {{ userData?.name }}</p>
-        <p><strong>Email:</strong> {{ userData?.email }}</p>
-        <p><strong>Rua:</strong> {{ userData?.address?.address }}</p>
-        <p><strong>Cidade:</strong> {{ userData?.address?.city }}</p>
-        <p><strong>CEP:</strong> {{ userData?.address?.cep }}</p>
-      </div>
-      <div class="coluna">
-        <p><strong>CPF:</strong> {{ userData?.cpf }}</p>
-        <p><strong>Telefone:</strong> {{ userData?.phone_number }}</p>
-        <p><strong>Número:</strong> {{ userData?.address?.home_number }}</p>
-        <p><strong>Estado:</strong> {{ userData?.address?.uf }}</p>
-        <p><a class="link-alterar"  routerLink="user/edit/{{ userData?.id }}">Alterar informações</a></p>
-      </div>
+<main *ngIf="userData && userData.addresses && userData.addresses.length > 0; else loading" class="d-flex flex-column justify-content-center align-items-center vh-100">
+  <h1 class="mb-3 fw-bold text-center">Suas informações</h1>
+  <div class="container">
+    <div class="coluna">
+      <p><strong>Nome:</strong> {{ userData.name }}</p>
+      <p><strong>Email:</strong> {{ userData.email }}</p>
+      <p><strong>Rua:</strong> {{ userData.addresses[0].address }}</p>
+      <p><strong>Cidade:</strong> {{ userData.addresses[0].city }}</p>
+      <p><strong>CEP:</strong> {{ userData.addresses[0].cep }}</p>
     </div>
-    <a class="link-alterar" routerLink="/your-profile">
-      Voltar ao perfil
-    </a>    
-  </main>
-  
-  <ng-template #loading>
-    <p>Carregando dados...</p>
-  </ng-template>
+    <div class="coluna">
+      <p><strong>CPF:</strong> {{ userData.cpf }}</p>
+      <p><strong>Telefone:</strong> {{ userData.phone_number }}</p>
+      <p><strong>Número:</strong> {{ userData.addresses[0].home_number }}</p>
+      <p><strong>Estado:</strong> {{ userData.addresses[0].uf }}</p>
+      <p><a class="link-alterar" routerLink="user/edit/{{ userData?.id }}">Alterar informações</a></p>
+    </div>
+  </div>
+  <a class="link-alterar" routerLink="/your-profile">
+    Voltar ao perfil
+  </a>
+</main>
+
+<ng-template #loading>
+  <p>Carregando dados...</p>
+</ng-template>

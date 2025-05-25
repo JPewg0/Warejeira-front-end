@@ -6,11 +6,6 @@
     <div class="form-floating mb-3">
       <input type="email" formControlName="email" class="form-control" id="floatingInput" placeholder="seu-email@gmail.com">
       <label for="floatingInput">E-mail</label>
-      <!-- Mensagem de erro abaixo do campo email -->
-      <div *ngIf="loginForm.get('email')?.invalid && loginForm.get('email')?.touched" class="text-danger">
-        <small *ngIf="loginForm.get('email')?.errors?.['required']">E-mail é obrigatório.</small>
-        <small *ngIf="loginForm.get('email')?.errors?.['email']">Insira um e-mail válido.</small>
-      </div>
     </div>
 
     <!-- Campo Senha -->
@@ -23,9 +18,6 @@
         placeholder="password"
       >
       <label for="floatingPassword">Senha</label>
-      <div *ngIf="loginForm.get('password')?.invalid && loginForm.get('password')?.touched" class="text-danger">
-        <small *ngIf="loginForm.get('password')?.errors?.['required']">Senha é obrigatória.</small>
-      </div>
     </div>
 
     <!-- Exibição de Mensagens -->
@@ -48,7 +40,7 @@
       
     </div>
     <!-- Botão de Login -->
-    <button type="submit" class="btn custom-btn w-100 py-2" [disabled]="loginForm.invalid">Entrar</button>
+    <button type="submit" class="btn custom-btn w-100 py-2">Entrar</button>
 
     <!-- Criar Nova Conta -->
     <p class="text-center mt-3">OU</p>
