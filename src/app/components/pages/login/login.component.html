@@ -1,11 +1,12 @@
-<main class="d-flex justify-content-center align-items-center vh-100">
-  <form [formGroup]="loginForm" (ngSubmit)="onSubmit()" class="w-25 w-sm-100">
+<main id="main">
+  <form [formGroup]="loginForm" (ngSubmit)="onSubmit()" id="form" class="w-25 w-sm-100">
     <h1 class="mb-3 fw-bold text-center">Entrar</h1>
 
     <!-- Campo E-mail -->
     <div class="form-floating mb-3">
       <input type="email" formControlName="email" class="form-control" id="floatingInput" placeholder="seu-email@gmail.com">
       <label for="floatingInput">E-mail</label>
+      <!-- Mensagem de erro abaixo do campo email -->
       <div *ngIf="loginForm.get('email')?.invalid && loginForm.get('email')?.touched" class="text-danger">
         <small *ngIf="loginForm.get('email')?.errors?.['required']">E-mail é obrigatório.</small>
         <small *ngIf="loginForm.get('email')?.errors?.['email']">Insira um e-mail válido.</small>
@@ -44,9 +45,8 @@
         >
         <label class="form-check-label" for="flexCheckDefault">Mostrar senha</label>
       </div>
-      <a routerLink="/user-forgot-password" class="text-decoration-none">Esqueci a senha</a>
+      
     </div>
-
     <!-- Botão de Login -->
     <button type="submit" class="btn custom-btn w-100 py-2" [disabled]="loginForm.invalid">Entrar</button>
 

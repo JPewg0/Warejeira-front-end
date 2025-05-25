@@ -34,8 +34,8 @@ export class YourProfileComponent {
   // Método para chamar o logout e redirecionar para a página de login
   onLogout(): void {
     this.authService.logout().subscribe(() => {
-      // Após o logout, redireciona para a página de login
-      this.router.navigate(['/login']);
+      // Após o logout, redireciona para a home
+      this.router.navigate(['/']);
     });
   }
 

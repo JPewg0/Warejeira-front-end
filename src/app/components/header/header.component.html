@@ -37,24 +37,33 @@
     </div>
     <div id="navbar">
         <form role="search">
-            <input type="text" placeholder="Pesquisar Produto" aria-label="Search">
+            <input type="text" placeholder="Pesquisar Produto" aria-label="Search"
+            (input)="search($event)">
         </form>
     </div>
     <div id="links">
-        <div class="link" routerLink="/shopping-cart">Carrinho</div>
+        <div class="link" routerLink="/shopping-cart">
+            <button class="btn btn-white btn-animated">
+                <img id="carrinho" src="assets/images/carrinho.png" alt="perfil">
+            </button>
+        </div>
         <div>|</div>
         <div *ngIf="!isAuthenticated" routerLink="/login">
-            <button class="btn btn-white btn-animated">
+            <button class="btn btn-animated">
                 <img id="login" src="assets/images/login.png" alt="perfil">
             </button>
         </div>
         <div class="button" *ngIf="isAuthenticated" routerLink="/your-profile">
-            <button class="btn btn-white btn-animated">
+            <button class="btn btn-animated">
                 <img id="login" src="assets/images/perfil.png" alt="perfil">
             </button>
         </div>
         <div *ngIf="isAuthenticated">|</div>
-        <div class="button" *ngIf="isAuthenticated" (click)="onLogout()">sair</div>
+        <div class="button" *ngIf="isAuthenticated" (click)="onLogout()">
+            <button class="btn-red btn-animated">
+                <img id="sair" src="assets/images/sair.png" alt="perfil">
+            </button>
+        </div>
     </div>
 </div>
 

@@ -1,9 +1,10 @@
-<div class="message" *ngIf="messagesService.message" role="alert">
+<div class="message" *ngIf="messagesService.message" role="alert" aria-label="Mensagem de sistema">
     <div class="message-header">
-        <h2>Mensagem!</h2>
-        <button class="clear" (click)="messagesService.clear()">
+        <h2>Mensagem</h2>
+        <button class="clear-button" (click)="messagesService.clear()" aria-label="Fechar mensagem">
             <fa-icon [icon]="faTimes"></fa-icon>
         </button>
     </div>
-    <p>{{ messagesService.message }}</p>
+    <p class="message-text">{{ messagesService.message }}</p>
 </div>
+

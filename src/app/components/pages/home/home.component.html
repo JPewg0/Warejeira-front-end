@@ -1,4 +1,4 @@
-<main class="d-flex flex-column justify-content-center align-items-center vh-100">
+<main id="main">
     <div class="categorias" id="nav-categorias">
 
         <div *ngIf="products.length > 0; else noProducts">
@@ -16,6 +16,6 @@
         </div>
     </div>
     <ng-template #noProducts>
-        <h1>Não há produtos cadastrados!</h1>
+        <h1 id="h1-np">Não há produtos cadastrados!</h1>
     </ng-template>
 </main>

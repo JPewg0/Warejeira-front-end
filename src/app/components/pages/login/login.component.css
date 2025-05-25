@@ -1,10 +1,16 @@
-.form-container{
+#form{
     max-width: 500px;
     padding: 1rem;
+    background-color: rgb(245, 245, 245);
+    border-radius: 5%;
+    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.185);
 }
 
-main{
+#main{
     height: 100%;
+    margin-top: 10%;
+    justify-content: center;
+    display: flex;
 }
 
 h1{

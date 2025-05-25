@@ -1,8 +1,17 @@
+#main{
+    justify-content: center;
+    display: flex;
+}
+
+#h1-np{
+        margin: 20%; 
+        justify-content: center;
+        display: flex;
+    }
 
 .categorias{
-    margin: 200px 0;
+    margin: 10px 0;
     width: 70%;
-    margin-top: 300px;
 }
 
 .col-1{

@@ -1,35 +1,63 @@
 .message {
     position: fixed;
     top: 3em;
-    width: 50%;
-    margin-left: 50%;
-    left: -25%;
-    z-index: 9999; /* Valor aumentado para garantir que fique na frente */
-    background-color: #fff;
-    border: 3px solid #003366;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 90%;
+    max-width: 600px;
+    background-color: #ffffff;
+    border-left: 6px solid #003366;
     padding: 1.5em;
-    display: flex;
-    flex-direction: column;
+    z-index: 9999;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+    border-radius: 10px;
+    animation: fadeInDown 0.4s ease;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
 .message-header {
     display: flex;
     justify-content: space-between;
-    margin-bottom: 1em;
+    align-items: center;
+    margin-bottom: 0.8em;
 }
 
-.message-header button {
-    padding: 1em;
+.message-header h2 {
+    font-size: 1.4em;
+    color: #003366;
+    margin: 0;
+}
+
+.clear-button {
+    background: none;
+    border: none;
+    padding: 0.5em;
     cursor: pointer;
-    width: 2em; /* Largura fixa */
-    height: 2em; /* Altura fixa */
-    box-sizing: border-box; /* Para garantir que a borda e o padding não aumentem o tamanho total */
+    border-radius: 50%;
+    transition: background-color 0.2s ease;
     display: flex;
     justify-content: center;
-    align-items: center; /* Centraliza o conteúdo, caso o conteúdo do botão seja um ícone */
+    align-items: center;
 }
 
+.clear-button:hover {
+    background-color: #f0f0f0;
+}
 
-.message-header p {
-    font-size: 1.2em;
+.message-text {
+    font-size: 1.1em;
+    color: #333333;
+    line-height: 1.5;
+}
+
+/* Animação de entrada */
+@keyframes fadeInDown {
+    from {
+        opacity: 0;
+        transform: translateY(-20px) translateX(-50%);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0) translateX(-50%);
+    }
 }
