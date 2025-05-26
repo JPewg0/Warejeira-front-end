@@ -41,15 +41,15 @@ export class CompanyRegistrationComponent {
       email: company.email,
       cnpj: company.cnpj,
       phone_number: company.phone_number,
-      address: [{
-        address: company.address,
-        cep: company.cep,
-        city: company.city,
-        complement: company.complement,
-        district: company.district,
-        number: company.number,
-        uf: company.uf
-      }]
+      addresses: company.addresses.map(address => ({
+        address: address.address,
+        cep: address.cep,
+        city: address.city,
+        complement: address.complement,
+        district: address.district,
+        home_number: address.home_number,
+        uf: address.uf
+      }))
     };
 
     const phoenixFormattedData = {
@@ -60,5 +60,8 @@ export class CompanyRegistrationComponent {
       next: (response) => this.router.navigate(['/your-profile']),
       error: (error) => console.error('Erro:', error)
     });
+
+
   }
+
 }
