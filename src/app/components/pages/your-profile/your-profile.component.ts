@@ -3,6 +3,7 @@ import { RouterLink } from '@angular/router';
 import { AuthService } from '../../../services/authentication.service';
 import { Router } from '@angular/router';
 import { UserService } from '../../../services/user.service';
+import { CompanyService } from '../../../services/company.service';
 
 @Component({
   selector: 'app-your-profile',
@@ -17,7 +18,8 @@ export class YourProfileComponent {
 
   constructor(
     private authService: AuthService,  // Serviço de autenticação
-    private userService: UserService,  // Serviço que lida com os dados do usuário
+    private userService: UserService,
+    private companyService: CompanyService, // Serviço que lida com os dados do usuário
     private router: Router            // Para navegação
   ) {}
 
@@ -34,8 +36,20 @@ export class YourProfileComponent {
   // Método para chamar o logout e redirecionar para a página de login
   onLogout(): void {
     this.authService.logout().subscribe(() => {
-      // Após o logout, redireciona para a home
-      this.router.navigate(['/']);
+      // Após o logout, redireciona para a página de login
+      this.router.navigate(['/login']);
+    });
+  }
+
+  goToCompany(): void {
+    if (!this.userId) {
+      console.error('ID do usuário não encontrado');
+      return;
+    }
+
+    this.companyService.getCompanyData(this.userId).subscribe({
+      next: () => this.router.navigate(['/your-company']),
+      error: () => this.router.navigate(['/company-registration'])
     });
   }
 

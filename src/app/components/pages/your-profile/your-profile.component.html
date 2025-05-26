@@ -9,10 +9,10 @@
       </a>
     </div>
     <div>
-      <a class="btn custom-btn mb-2" routerLink="/company-registration" role="button">
-          <img src="https://cdn-icons-png.flaticon.com/512/66/66754.png" alt="Ícone" class="me-2" style="width: 40px; height: 40px;">
-          Sua empresa
-      </a>    
+      <button class="btn custom-btn mb-2" (click)="goToCompany()">
+        <img src="https://cdn-icons-png.flaticon.com/512/66/66754.png" alt="Ícone" class="me-2" style="width: 40px; height: 40px;">
+        Sua empresa
+      </button>
     </div>
     <div>
       <a routerLink="/profile-data/{{ userId }}" class="btn custom-btn mb-2" role="button">
@@ -26,5 +26,4 @@
 
    <!-- Excluir conta como um botão -->
    <button class="btn custom-btn mb-2 link-delete" (click)="onDeleteAccount()">Excluir conta</button>
-  </main>
-  
+</main>

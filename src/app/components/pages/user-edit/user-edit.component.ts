@@ -86,7 +86,7 @@ export class UserEditComponent implements OnInit {
     this.userService.updateUser(this.userId, phoenixFormattedData).subscribe(
       (response) => {
         console.log('Usuário atualizado com sucesso!', response);
-        this.router.navigate(['/users']);
+        this.router.navigate(['/your-profile']);
       },
       (error) => {
         console.error('Erro ao atualizar o usuário:', error);

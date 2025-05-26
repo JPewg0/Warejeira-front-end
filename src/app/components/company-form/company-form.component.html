@@ -36,7 +36,7 @@
             <input type="text" class="form-control" id="floatingTelefone" placeholder="(11)11111-1111" formControlName="phone_number">
             <label for="floatingTelefone">Telefone</label>
             <!-- Mensagem de erro abaixo do campo Nome -->
-            <div class="validation-error" *ngIf="userForm.controls['phone'].invalid && formDir.submitted">
+            <div class="validation-error" *ngIf="userForm.controls['phone_number'].invalid && formDir.submitted">
                 <p>Este campo é obrigatório!</p>
             </div>
         </div>
@@ -117,5 +117,4 @@
     <!-- Botão -->
     <!-- <button class="btn custom-btn w-100 py-2" type="submit"></button> -->
      <input type="submit" value="{{ btnText }}" class="btn custom-btn w-100 py-2">
-</form>    
-
+</form>
