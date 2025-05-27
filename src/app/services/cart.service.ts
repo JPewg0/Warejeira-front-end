@@ -1,39 +1,50 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { environment } from '../../environments/environment';
+import { CartItem } from '../Cart';
+import { map } from 'rxjs/operators';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class CartService {
-  private apiUrl = `${environment.baseApiUrl}/cart`; // ajuste conforme seu backend
+  private baseApiUrl = environment.baseApiUrl;
+  private apiUrl = `${this.baseApiUrl}/cart_products`;
 
   constructor(private http: HttpClient) {}
 
-  // Buscar os produtos do carrinho de um usuário
-  getCart(userId: string): Observable<any> {
-    return this.http.get<any>(`${this.apiUrl}/user/${userId}`);
+  private getAuthHeaders(): HttpHeaders {
+    const token = localStorage.getItem('authToken');
+    if (!token) {
+      throw new Error('Token não encontrado. O usuário não está autenticado.');
+    }
+    return new HttpHeaders().set('Authorization', `Bearer ${token}`);
   }
 
-  // Adicionar item ao carrinho
-  addToCart(productId: number, quantity: number, userId: string): Observable<any> {
-    const cartItem = {
+  getCart(userId: string): Observable<CartItem[]> {
+    const headers = this.getAuthHeaders();
+    return this.http.get<{ data: CartItem[] }>(`${this.apiUrl}/user/${userId}`, { headers })
+      .pipe(map(response => response.data));
+  }
+
+  addToCart(productId: number, quantity: number, userId: string): Observable<CartItem> {
+    const headers = this.getAuthHeaders();
+    const cartItem: CartItem = {
       product_id: productId,
-      quantity: quantity,
-      user_id: userId
+      quantity,
+      user_id: userId,
     };
-
-    return this.http.post<any>(`${this.apiUrl}/add`, cartItem);
+    return this.http.post<CartItem>(this.apiUrl, { cart_product: cartItem }, { headers });
   }
 
-  // Atualizar quantidade
-  updateCartItem(item: any): Observable<any> {
-    return this.http.put<any>(`${this.apiUrl}/update`, item);
+  updateCartItem(item: CartItem): Observable<any> {
+    const headers = this.getAuthHeaders();
+    return this.http.put(`${this.apiUrl}/${item.id}`, { cart_product: item }, { headers });
   }
 
-  // Remover item do carrinho
-  removeCartItem(productId: number): Observable<any> {
-    return this.http.delete<any>(`${this.apiUrl}/remove/${productId}`);
+  removeCartItem(cartItemId: number): Observable<any> {
+    const headers = this.getAuthHeaders();
+    return this.http.delete(`${this.apiUrl}/${cartItemId}`, { headers });
   }
 }

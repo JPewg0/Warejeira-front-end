@@ -1,0 +1,40 @@
+<main>
+  <div class="container" *ngIf="cartProducts.length > 0; else emptyCart">
+    
+    <!-- Lista de produtos no carrinho -->
+    <div class="produto" *ngFor="let item of cartProducts">
+
+      <div class="imagem">
+        <img [src]="item.product.data.image_url" alt="{{ item.product.data.name }}">
+      </div>
+
+      <div class="info">
+        <h3>{{ item.product.data.name }}</h3>
+        <textarea rows="4" cols="50" readonly>{{ item.product.data.description }}</textarea>
+
+        <div class="acoes">
+          <label for="quantidade">Quantidade:</label>
+          <select id="quantidade" [(ngModel)]="item.quantity" (change)="updateQuantity(item)">
+            <option *ngFor="let q of [1,2,3,4,5]" [value]="q">Quant: {{ q }}</option>
+          </select>
+
+          <button class="excluir" (click)="removeFromCart(item)">Excluir</button>
+        </div>
+      </div>
+
+      <div class="preco">
+        <h3>Preço: R$ {{ item.product.data.price | number:'1.2-2' }}</h3>
+      </div>
+
+      <!-- Ação final -->
+    <div class="acoes">
+      <button class="fechar-pedido" (click)="checkout()">Fechar pedido</button>
+    </div>
+  </div>
+    </div>
+    
+  <!-- Carrinho vazio -->
+  <ng-template #emptyCart>
+    <h2>Carrinho vazio!</h2>
+  </ng-template>
+</main>

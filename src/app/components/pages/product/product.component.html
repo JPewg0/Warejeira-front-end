@@ -18,7 +18,7 @@
                 </div>
                 <p>{{ product.stock_quantity }} peças disponíveis</p>
             </div>
-            <button class="adicionar">Adicionar ao carrinho</button>
+            <button class="adicionar" (click)="addToCart()">Adicionar ao carrinho</button>
             <button class="comprar" routerLink="/payment1/{{product.id}}">Comprar agora</button>
         </div>
     </div>

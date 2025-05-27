@@ -1,14 +1,16 @@
 import { Component, OnInit } from '@angular/core';
 import { CartService } from '../../../services/cart.service';
+import { FormsModule } from '@angular/forms';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-shopping-cart',
   standalone: true,
-  imports: [],
+  imports: [FormsModule, CommonModule],
   templateUrl: './shopping-cart.component.html',
   styleUrl: './shopping-cart.component.css'
 })
-export class CartComponent implements OnInit {
+export class ShoppingCartComponent implements OnInit {
   cartProducts: any[] = [];
   userId: string = '89d91017-7a89-4f14-a365-5013b7720278'; // pegue do auth futuramente
 
@@ -19,9 +21,29 @@ export class CartComponent implements OnInit {
   }
 
   loadCart(): void {
-    this.cartService.getCart(this.userId).subscribe({
+    const userId = localStorage.getItem('userId');
+    if (!userId) {
+      console.error('Usuário não está logado.');
+      return;
+    }
+
+    this.cartService.getCart(userId).subscribe({
       next: (cartItems) => {
-        this.cartProducts = cartItems;
+        this.cartProducts = cartItems.map((item: any) => {
+          return {
+            ...item,
+            name: item.product.name,
+            price: item.product.price,
+            image_url: item.product.image_url,
+            description: item.product.description
+          };
+        });
+
+        console.log('Carrinho carregado:', this.cartProducts);
+
+        if (this.cartProducts.length === 0) {
+          console.warn('Carrinho vazio');
+        }
       },
       error: (err) => {
         console.error('Erro ao carregar carrinho:', err);
@@ -31,10 +53,16 @@ export class CartComponent implements OnInit {
 
   updateQuantity(item: any): void {
     const updatedItem = {
+      id: item.id, // <-- ESSENCIAL
       product_id: item.product_id,
       user_id: this.userId,
       quantity: item.quantity
     };
+
+    if (!updatedItem.id) {
+      console.error('ID do item está indefinido. Não é possível atualizar.');
+      return;
+    }
 
     this.cartService.updateCartItem(updatedItem).subscribe({
       next: () => {
@@ -47,7 +75,12 @@ export class CartComponent implements OnInit {
   }
 
   removeFromCart(item: any): void {
-    this.cartService.removeCartItem(item.product_id).subscribe({
+    if (!item.id) {
+      console.error('ID do item do carrinho é indefinido');
+      return;
+    }
+
+    this.cartService.removeCartItem(item.id).subscribe({
       next: () => {
         this.loadCart();
       },
