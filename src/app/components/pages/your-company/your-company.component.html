@@ -1,0 +1,34 @@
+<main>
+    <body>
+        <div class="container" *ngIf="companyData">
+            <div class="coluna">
+                <p><strong>Nome:</strong> {{ companyData.name }}</p>
+                <p><strong>Email:</strong> {{ companyData.email }}</p>
+                <p><strong>Rua:</strong> {{ companyData.addresses[0]?.address }}</p>
+                <p><strong>Cidade:</strong> {{ companyData.addresses[0]?.city }}</p>
+                <p><strong>CEP:</strong> {{ companyData.addresses[0]?.cep }}</p>
+            </div>
+            <div class="coluna">
+                <p><strong>CNPJ:</strong> {{ companyData.cnpj }}</p>
+                <p><strong>Telefone:</strong> {{ companyData.phone_number }}</p>
+                <p><strong>Número:</strong> {{ companyData.addresses[0]?.home_number }}</p>
+                <p><strong>Estado:</strong> {{ companyData.addresses[0]?.uf }}</p>
+                <p><span (click)="goToUpdateCompany()" style="cursor: pointer;">Alterar informações</span></p>
+            </div>
+        </div>
+        
+        <!-- Mensagem de carregamento -->
+        <div *ngIf="!companyData" class="loading">
+            <p>Carregando dados da empresa...</p>
+        </div>
+        
+        <div>
+            <button class="botao botao-seus-produtos">Seus Produtos</button>
+            <button class="botao botao-gerar-relatorio" (click)="generateReport()">Gerar Relatório</button>
+            <button class="botao botao-pedidos">Pedidos</button>
+        </div>
+        <div class="voltar">
+            <p><span (click)="goBackToProfile()" style="cursor: pointer;">Voltar para o perfil</span></p>
+        </div>
+    </body>
+</main>

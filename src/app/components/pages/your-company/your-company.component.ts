@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { Router } from '@angular/router';
 import { Company } from '../../../Company';
 import { CompanyService } from '../../../services/company.service';
+import { OrderService } from '../../../services/order.service';
 
 @Component({
   selector: 'app-your-company',
@@ -18,6 +19,7 @@ export class YourCompanyComponent implements OnInit {
   
   constructor(
     private companyService: CompanyService,
+    private orderService: OrderService,
     private router: Router  // Injeção do Router
   ) {}
 
@@ -70,11 +72,28 @@ export class YourCompanyComponent implements OnInit {
 
   // Função para gerar relatório
   generateReport(): void {
-    
+    this.orderService.createReport().subscribe({
+      next: (response: Blob) => {
+        const blob = new Blob([response], { type: 'text/csv' });
+        const url = window.URL.createObjectURL(blob);
+        const a = document.createElement('a');
+        a.href = url;
+        a.download = 'relatorio.csv';
+        a.click();
+        window.URL.revokeObjectURL(url);
+      },
+      error: (err) => {
+        console.error('Erro ao gerar o relatório', err);
+      }
+    });
   }
 
   // Função para voltar ao perfil
   goBackToProfile(): void {
     this.router.navigate(['/your-profile']);
+  }
+
+  goToUpdateCompany(): void {
+    this.router.navigate(['/update-company-information']);
   }
 }

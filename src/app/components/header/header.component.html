@@ -1,36 +1,3 @@
- <!--
-<div class="container" id="nav-container">
-    <nav class="navbar navbar-expand-lg fixed-top">
-        <a href="/" class="navbar-brand">
-            <img id="logo" src="https://i.ibb.co/zf4CKRd/logo.png" alt="Warejeira">
-        </a>
-        <div class="collapse navbar-collapse">
-            <form class="d-flex me-2" role="search">
-                <input class="form-control" type="text" placeholder="Pesquisar Produto" aria-label="Search" 
-                    (input)="search($event)">
-            </form>
-            <ul class="navbar-nav me-auto">
-                <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                        Filtro
-                    </a>
-                    <ul class="dropdown-menu">
-                        <li><a class="dropdown-item" href="#">Action</a></li>
-                        <li><a class="dropdown-item" href="#">Another action</a></li>
-                        <li><hr class="dropdown-divider"></li>
-                        <li><a class="dropdown-item" href="#">Something else here</a></li>
-                    </ul>
-                </li>
-            </ul>
-            <div id="navbar-links" class="d-flex">
-                <a class="nav-item nav-link" routerLink="/shopping-cart" id="carrinho">Carrinho</a>
-                <a *ngIf="!isAuthenticated" class="nav-item nav-link" routerLink="/login" id="perfil">Login</a>
-                <a *ngIf="isAuthenticated" class=" nav-item nav-link" routerLink="/your-profile">Seu perfil</a>
-            </div>            
-        </div>
-    </nav>
-</div>
--->
 <div id="container">
     <div id="logo" routerLink="/">
         <img id="logo-img" src="assets/images/logo_atual2.png" alt="perfil">
@@ -42,10 +9,11 @@
         </form>
     </div>
     <div id="links">
-        <div class="link" routerLink="/shopping-cart">
-            <button class="btn btn-white btn-animated">
-                <img id="carrinho" src="assets/images/carrinho.png" alt="perfil">
-            </button>
+        <div class="link" routerLink="/shopping-cart" style="position: relative;">
+        <button class="btn btn-white btn-animated">
+            <img id="carrinho" src="assets/images/carrinho.png" alt="carrinho">
+            <span *ngIf="cartCount > 0" class="cart-badge">{{ cartCount }}</span>
+        </button>
         </div>
         <div>|</div>
         <div *ngIf="!isAuthenticated" routerLink="/login">

@@ -20,6 +20,20 @@ export class ShoppingCartComponent implements OnInit {
     this.loadCart();
   }
 
+  increaseQuantity(item: any): void {
+    if (item.quantity < item.product.data.stock_quantity) {
+      item.quantity++;
+      this.updateQuantity(item);
+    }
+  }
+
+  decreaseQuantity(item: any): void {
+    if (item.quantity > 1) {
+      item.quantity--;
+      this.updateQuantity(item);
+    }
+  }
+
   loadCart(): void {
     const userId = localStorage.getItem('userId');
     if (!userId) {

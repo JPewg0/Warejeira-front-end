@@ -3,6 +3,8 @@ import { Router, ActivatedRoute } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { CartService } from '../../../services/cart.service';
 
+import { MessagesService } from '../../../services/messages.service';
+
 import { ProductService } from '../../../services/product.service';
 
 import { Product } from '../../../Product';
@@ -22,11 +24,13 @@ export class ProductComponent {
 
   product?: Product;
   baseApiUrl = environment.baseApiUrl
+  message: string | null = null; // Mensagem de erro ou sucesso
 
   constructor(
     private productService: ProductService,
     private route: ActivatedRoute,
-    private cartService: CartService
+    private cartService: CartService,
+    private messagesService: MessagesService
   ) { }
 
   ngOnInit(): void {
@@ -45,9 +49,9 @@ export class ProductComponent {
     if (this.product && this.quantity < this.product.stock_quantity) {
       this.quantity++;
     } else if (!this.product) {
-      alert('Produto ainda está carregando. Tente novamente!');
+      this.messagesService.add('Produto ainda não carregado. Tente novamente mais tarde');
     } else {
-      alert('Quantidade máxima atingida!');
+      this.messagesService.add('Quantidade máxima atingida');
     }
   }
 
@@ -55,7 +59,7 @@ export class ProductComponent {
     if (this.quantity > 1) {
       this.quantity--;
     } else {
-      alert('A quantidade mínima é 1!');
+      this.messagesService.add('A quantidade mínima é 1!');
     }
   }
 
@@ -64,24 +68,24 @@ export class ProductComponent {
     const userId = localStorage.getItem('userId');
     if (!userId) {
       console.error('Usuário não está logado.'); // log extra
-      alert('Você precisa estar logado para adicionar ao carrinho!');
+      this.messagesService.add('Você precisa estar logado para adicionar ao carrinho');
       return;
     }
 
     if (!this.product) {
       console.warn('Produto ainda não carregado.'); // log extra
-      alert('Produto ainda não carregado. Tente novamente mais tarde.');
+      this.messagesService.add('Produto ainda não carregado. Tente novamente mais tarde');
       return;
     }
 
     this.cartService.addToCart(this.product.id, this.quantity, userId).subscribe({
       next: (res) => {
         console.log('Produto adicionado ao carrinho com sucesso:', res); // log ok
-        alert('Produto adicionado ao carrinho!');
+        this.messagesService.add('Produto adicionado ao carrinho');
       },
       error: err => {
         console.error('Erro ao adicionar ao carrinho:', err); // log de erro
-        alert('Erro ao adicionar ao carrinho.');
+        this.messagesService.add('Erro ao adicionar o carrinho');
       }
     });
   }

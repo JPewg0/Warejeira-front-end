@@ -13,10 +13,17 @@
         <textarea rows="4" cols="50" readonly>{{ item.product.data.description }}</textarea>
 
         <div class="acoes">
-          <label for="quantidade">Quantidade:</label>
-          <select id="quantidade" [(ngModel)]="item.quantity" (change)="updateQuantity(item)">
-            <option *ngFor="let q of [1,2,3,4,5]" [value]="q">Quant: {{ q }}</option>
-          </select>
+
+          <div class="cont">
+            <label>Quantidade:</label>
+            <div class="input-group">
+              <i class="bx bx-minus" (click)="decreaseQuantity(item)"></i>
+              <input type="text" class="num-cont" [value]="item.quantity" readonly />
+              <i class="bx bx-plus" (click)="increaseQuantity(item)"></i>
+            </div>
+            <p>{{ item.product.data.stock_quantity }} peças disponíveis</p>
+          </div>
+
 
           <button class="excluir" (click)="removeFromCart(item)">Excluir</button>
         </div>

@@ -13,6 +13,8 @@ import { RouterLink, Router } from '@angular/router';
 
 import { AuthService } from '../../services/authentication.service';
 
+import { CartService } from '../../services/cart.service';
+
 import { SearchService } from '../../services/search.service';
 
 
@@ -27,6 +29,7 @@ export class HeaderComponent implements OnInit, OnDestroy {
   allProducts: Product[] = [];
   products: Product[] = [];
   baseApiUrl = environment.baseApiUrl;
+  cartCount: number = 0;
   
   faSearch = faSearch;
   searchTerm: string = '';
@@ -40,10 +43,12 @@ export class HeaderComponent implements OnInit, OnDestroy {
     private productService: ProductService,
     private authService: AuthService,  // Injeção do AuthService
     private searchService: SearchService,
-    private router: Router
+    private router: Router,
+    private cartService: CartService
   ) {}
 
   ngOnInit(): void {
+    this.loadCartCount();
     // Assine o observable do estado de autenticação
     this.authSubscription = this.authService.isAuthenticated$.subscribe((authState) => {
       this.isAuthenticated = authState;
@@ -82,6 +87,19 @@ export class HeaderComponent implements OnInit, OnDestroy {
     this.authService.logout().subscribe(() => {
       // Após o logout, redireciona para a home
       this.router.navigate(['/']);
+    });
+  }
+
+  loadCartCount(): void {
+    const userId = localStorage.getItem('userId');
+    if (!userId) return;
+
+    this.cartService.getCart(userId).subscribe({
+      next: (items) => {
+        this.cartCount = items.reduce((total, item) => total + item.quantity, 0);
+        console.log('Cart count:', this.cartCount);
+      },
+      error: (err) => console.error('Erro ao carregar contagem do carrinho:', err)
     });
   }
 }
