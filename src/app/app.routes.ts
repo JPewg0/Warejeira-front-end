@@ -28,7 +28,7 @@ export const routes: Routes = [
     { path: 'login', component: LoginComponent },
     { path: 'user-registration', component: UserRegistrationComponent },
     { path: 'shopping-cart', component: ShoppingCartComponent },
-    { path: 'company-registration/:userId', component: CompanyRegistrationComponent },
+    { path: 'company-registration', component: CompanyRegistrationComponent },
     { path: 'products/:id', component: ProductComponent },
     { path: 'profile-data/:id', component: ProfileDataComponent },
     { path: 'profile-data', component: ProfileDataComponent },
@@ -37,7 +37,10 @@ export const routes: Routes = [
     { path: 'company-orders', component: CompanyOrdersComponent },
     { path: 'new-company', component: NewCompanyComponent },
     { path: 'payment1/:id', component: Payment1Component },
-    { path: 'product-registration', component: ProductRegistrationComponent },
+    {
+        path: 'product-registration/:companyId',
+        component: ProductRegistrationComponent
+    },
     { path: 'screen1', component: Screen1Component },
     { path: 'screen2', component: Screen2Component },
     { path: 'update-company-information', component: UpdateCompanyInformationComponent },

@@ -96,4 +96,12 @@ export class YourCompanyComponent implements OnInit {
   goToUpdateCompany(): void {
     this.router.navigate(['/update-company-information']);
   }
+
+  goToCreateProduct() {
+    if (this.companyData?.id) {
+      this.router.navigate(['/product-registration', this.companyData.id]);
+    } else {
+      console.error('ID da empresa não disponível para navegação');
+    }
+  }
 }

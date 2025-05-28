@@ -1,0 +1,9 @@
+<main class="d-flex justify-content-center align-items-center vh-100">
+  <div *ngIf="company">
+    <app-company-form 
+      [companyData]="company"
+      [btnText]="'Atualizar Empresa'"
+      (onSubmit)="editHandler($event)">
+    </app-company-form>
+  </div>
+</main>

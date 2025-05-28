@@ -1,23 +1,21 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { CompanyService } from '../../../services/company.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Company } from '../../../Company';
 import { Address } from '../../../User';
-import { CompanyFormComponent } from "../../company-form/company-form.component";
+import { CompanyFormComponent } from '../../company-form/company-form.component';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-update-company-information',
   standalone: true,
-  imports: [CompanyFormComponent],
+  imports: [CompanyFormComponent, CommonModule],
   templateUrl: './update-company-information.component.html',
   styleUrl: './update-company-information.component.css'
 })
-
-
-
-export class UpdateCompanyInformationComponent {
+export class UpdateCompanyInformationComponent implements OnInit {
   company!: Company;
-  userId!: string;
+  userId: string = '';
 
   constructor(
     private companyService: CompanyService,
@@ -25,66 +23,79 @@ export class UpdateCompanyInformationComponent {
     private router: Router
   ) {}
 
-ngOnInit(): void {
-  this.userId = this.route.snapshot.paramMap.get('userId') || '';
+  ngOnInit(): void {
+    const routeUserId = this.route.snapshot.paramMap.get('userId');
+    this.userId = routeUserId ?? localStorage.getItem('userId') ?? '';
 
-  if (this.userId) {
-    this.companyService.getCompanyData(this.userId).subscribe((response) => {
-      const userResponse = response.data;
+    if (!this.userId) {
+      console.error('ID de usuário não encontrado.');
+      return;
+    }
 
-      const firstAddress: Address = {
-        address: userResponse.addresses.data[0]?.address || '',
-        cep: userResponse.addresses.data[0]?.cep || '',
-        city: userResponse.addresses.data[0]?.city || '',
-        uf: userResponse.addresses.data[0]?.uf || '',
-        district: userResponse.addresses.data[0]?.district || '',
-        complement: userResponse.addresses.data[0]?.complement || '',
-        home_number: userResponse.addresses.data[0]?.home_number || ''
-      };
+    this.companyService.getCompanyData(this.userId).subscribe({
+      next: (response) => {
+        const userResponse = response.data;
 
-      this.company = {
-        id: userResponse.id,
-        name: userResponse.name || '',
-        cnpj: userResponse.cnpj || '',
-        email: userResponse.email || '',
-        phone_number: userResponse.phone_number || '',
-        addresses: [firstAddress]
-      };
+        const firstAddress: Address = {
+          address: userResponse.addresses.data[0]?.address || '',
+          cep: userResponse.addresses.data[0]?.cep || '',
+          city: userResponse.addresses.data[0]?.city || '',
+          uf: userResponse.addresses.data[0]?.uf || '',
+          district: userResponse.addresses.data[0]?.district || '',
+          complement: userResponse.addresses.data[0]?.complement || '',
+          home_number: userResponse.addresses.data[0]?.home_number || ''
+        };
+
+        this.company = {
+          id: Number(userResponse.id),  // Agora como número
+          name: userResponse.name || '',
+          cnpj: userResponse.cnpj || '',
+          email: userResponse.email || '',
+          phone_number: userResponse.phone_number || '',
+          addresses: [firstAddress]
+        };
+      },
+      error: (err) => {
+        console.error('Erro ao carregar os dados da empresa:', err);
+      }
     });
   }
-}
 
-  editHandler(formValue: any) {
-  const companyData: Company = {
-    name: formValue.name,
-    cnpj: formValue.cnpj,
-    email: formValue.email,
-    phone_number: formValue.phone_number,
-    addresses: [
-      {
-        address: formValue.address,
-        cep: formValue.cep,
-        city: formValue.city,
-        uf: formValue.uf,
-        district: formValue.district,
-        complement: formValue.complement,
-        home_number: formValue.number
-      }
-    ]
-  };
+  editHandler(formValue: any): void {
+    const companyId = Number(this.company.id);
+    if (isNaN(companyId)) {
+      console.error('ID da empresa inválido');
+      return;
+    }
 
-    const phoenixFormattedData = {
-      company: companyData  // Mantém a estrutura esperada pelo Phoenix
+    const companyData = {
+      name: formValue.name,
+      cnpj: formValue.cnpj,
+      email: formValue.email,
+      phone_number: formValue.phone_number,
+      user_id: this.userId,
+      addresses: formValue.addresses.map((addr: any) => ({
+        address: addr.address,
+        cep: addr.cep.replace(/\D/g, ''), // remove caracteres não numéricos
+        city: addr.city,
+        uf: addr.uf,
+        district: addr.district,
+        complement: addr.complement,
+        home_number: addr.home_number
+      }))
     };
 
-    this.companyService.updateCompany(this.company.id, phoenixFormattedData).subscribe(
-      (response) => {
-        console.log('Empresa atualizado com sucesso!', response);
+    const phoenixFormattedData = { company: companyData };
+
+    this.companyService.updateCompany(companyId, phoenixFormattedData).subscribe({
+      next: (response) => {
+        console.log('Empresa atualizada com sucesso!', response);
         this.router.navigate(['/your-company']);
       },
-      (error) => {
-        console.error('Erro ao atualizar o empresa:', error);
+      error: (error) => {
+        console.error('Erro ao atualizar a empresa:', error);
       }
-    );
+    });
   }
+
 }

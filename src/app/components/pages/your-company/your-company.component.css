@@ -5,6 +5,7 @@
     margin-top: 10%;
     display: flex; /* Ativa o layout flex */
     gap: 20px; /* Define o espaço entre as colunas */
+    background-color: #f0f0f0; /* Cor de fundo cinza claro */
 }
 
 p {
@@ -21,4 +22,97 @@ p {
 span {
     text-decoration: underline;
     font-weight: bold;
+}
+
+/* Estilo base para todos os botões */
+.botao {
+    display: inline-flex;
+    align-items: center;
+    padding: 10px 20px;
+    border-radius: 5px;
+    color: white;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    background-color: white;
+    color: #003366;
+    border: 2px solid #003366;
+    width: 200px; /* Define uma largura fixa para todos os botões */
+    margin-left: 225px;
+}
+
+.botao:hover {
+    background-color: #003366;
+    color: white;
+}
+
+.link-alterar{
+    font-size: 1.2pc;
+    padding: 7px;
+    color: rgb(94, 94, 94);
+}
+
+.voltar {
+    color: #7799; 
+    font-weight: bold;
+    font-size: 18px;
+    padding-top: 10px;
+    text-decoration: none; 
+}
+
+.voltar:hover {
+    color: #003366; 
+    text-decoration: underline; 
+}
+
+.botao {
+  background-color: #003366;
+  color: white;
+  padding: 12px 24px;
+  margin: 10px;
+  border: none;
+  border-radius: 8px;
+  font-size: 16px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.botao:hover {
+  background-color: #45a049;
+  transform: translateY(-2px);
+}
+
+.botao:active {
+  background-color: #3e8e41;
+  transform: scale(0.98);
+}
+
+.botoes-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 20px;
+  margin-top: 30px;
+  flex-wrap: wrap;
+}
+
+.voltar-wrapper {
+  display: flex;
+  justify-content: center;
+  margin-top: 20px;
+}
+
+.voltar {
+  color: #7799;
+  font-weight: bold;
+  font-size: 18px;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.voltar:hover {
+  color: #003366;
+  text-decoration: underline;
 }

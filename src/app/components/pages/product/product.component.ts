@@ -64,27 +64,22 @@ export class ProductComponent {
   }
 
   addToCart(): void {
-    console.log('Botão clicado - função addToCart chamada');
     const userId = localStorage.getItem('userId');
     if (!userId) {
-      console.error('Usuário não está logado.'); // log extra
       this.messagesService.add('Você precisa estar logado para adicionar ao carrinho');
       return;
     }
 
-    if (!this.product) {
-      console.warn('Produto ainda não carregado.'); // log extra
+    if (!this.product || this.product.id === undefined) {
       this.messagesService.add('Produto ainda não carregado. Tente novamente mais tarde');
       return;
     }
 
     this.cartService.addToCart(this.product.id, this.quantity, userId).subscribe({
       next: (res) => {
-        console.log('Produto adicionado ao carrinho com sucesso:', res); // log ok
         this.messagesService.add('Produto adicionado ao carrinho');
       },
       error: err => {
-        console.error('Erro ao adicionar ao carrinho:', err); // log de erro
         this.messagesService.add('Erro ao adicionar o carrinho');
       }
     });

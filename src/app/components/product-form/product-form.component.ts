@@ -1,6 +1,5 @@
-import { Component, EventEmitter, Input, input, Output, output, OnInit } from '@angular/core';
-import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { ReactiveFormsModule } from '@angular/forms';
+import { Component, EventEmitter, Input, Output, OnInit } from '@angular/core';
+import { FormControl, FormGroup, Validators, ReactiveFormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { Product } from '../../Product';
 import { ProductService } from '../../services/product.service';
@@ -10,7 +9,7 @@ import { ProductService } from '../../services/product.service';
   standalone: true,
   imports: [CommonModule, ReactiveFormsModule],
   templateUrl: './product-form.component.html',
-  styleUrl: './product-form.component.css'
+  styleUrls: ['./product-form.component.css']
 })
 export class ProductFormComponent implements OnInit {
   @Output() onSubmit = new EventEmitter<Product>();
@@ -20,13 +19,12 @@ export class ProductFormComponent implements OnInit {
   selectedImage: string | ArrayBuffer | null = null;
   categorias: any[] = [];
 
-  constructor(private productService: ProductService) { } // Injeção do serviço
+  constructor(private productService: ProductService) {}
 
   ngOnInit(): void {
-
     this.productForm = new FormGroup({
       name: new FormControl('', [Validators.required]),
-      category: new FormControl('', [Validators.required]),
+      category: new FormControl('', [Validators.required]), // categoria única
       price: new FormControl('', [Validators.required]),
       stock_quantity: new FormControl('', [Validators.required]),
       description: new FormControl(''),
@@ -37,13 +35,10 @@ export class ProductFormComponent implements OnInit {
     this.loadCategories();
   }
 
-  // Carregar categorias usando o serviço
   loadCategories(): void {
     this.productService.getCategories().subscribe(
       (data) => {
-        console.log('Categorias recebidas:', data); // Verifique o console para ver as categorias
         this.categorias = data.data;
-        console.log("categorias populadas: ", this.categorias) // Popula o array com as categorias da API
       },
       (error) => {
         console.error('Erro ao carregar categorias:', error);
@@ -51,26 +46,49 @@ export class ProductFormComponent implements OnInit {
     );
   }
 
-  // Manipulação do arquivo de imagem
   onFileSelected(event: any): void {
     const file: File = event.target.files[0];
     if (file) {
       const reader = new FileReader();
       reader.onload = () => {
-        this.selectedImage = reader.result; // Atualiza a imagem visualizada
-        this.productForm.patchValue({ image: file }); // Atualiza o valor do formulário
+        this.selectedImage = reader.result;
+        this.productForm.patchValue({ image: file });
       };
-      reader.readAsDataURL(file); // Lê a imagem e converte para URL
+      reader.readAsDataURL(file);
     }
   }
 
-  // Envio do formulário
   submit(): void {
     if (this.productForm.invalid) {
+      this.productForm.markAllAsTouched();
       return;
     }
 
-    console.log(this.productForm.value);
-    this.onSubmit.emit(this.productForm.value); // Emite o valor do formulário
+    const formValue = this.productForm.value;
+
+    // Converte category (string) para array de números
+    const categories = [Number(formValue.category)];
+
+    // Converte price e stock_quantity para números (ajuste para seu formato de número)
+    const price = parseFloat(
+      formValue.price
+        .replace(/\./g, '') // remove pontos (milhares)
+        .replace(',', '.')  // troca vírgula por ponto decimal
+    );
+
+    const stock_quantity = Number(formValue.stock_quantity.replace(/\./g, ''));
+
+    const product: Product = {
+      name: formValue.name,
+      categories: categories,
+      company_id: 9, // ou outro valor dinâmico, se tiver
+      price: price,
+      stock_quantity: stock_quantity,
+      description: formValue.description,
+      image: formValue.image // arquivo para enviar na etapa da imagem
+    };
+
+    this.onSubmit.emit(product);
   }
+
 }

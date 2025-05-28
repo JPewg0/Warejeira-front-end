@@ -6,5 +6,6 @@ export interface Company {
     name: string,
     email: string,
     phone_number: string,
+    user_id?: string,
     addresses: Address[],
 }
